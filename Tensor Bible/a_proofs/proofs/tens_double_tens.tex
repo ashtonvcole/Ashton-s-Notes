@@ -1,0 +1,9 @@
+\begin{proof}[Equation \ref{equation:tens_double_tens}]
+	\label{proof:tens_double_tens}
+	\begin{flalign}
+		&& \vb{S} \vddot \vb{T} &= \left( \sum_{i = 1}^{m} \sum_{j = 1}^{n} S_{ij} \vb{\hat{e}}_{i} \otimes \vb{\hat{e}}_{j} \right) \vddot \left( \sum_{k = 1}^{m} \sum_{\ell = 1}^{m} T_{k\ell} \vb{\hat{e}}_{k} \otimes \vb{\hat{e}}_{\ell} \right) & \text{Using \ref{equation:tens}} \\
+		&& &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} \sum_{k = 1}^{m} \sum_{\ell = 1}^{n} S_{ij} T_{k\ell} \left( \vb{\hat{e}}_{i} \otimes \vb{\hat{e}}_{j} \right) \vddot \left( \vb{\hat{e}}_{k} \otimes \vb{\hat{e}}_{\ell} \right) & \\
+		&& &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} \sum_{k = 1}^{m} \sum_{\ell = 1}^{n} S_{ij} T_{k\ell} \left( \vb{\hat{e}}_{i} \vdot \vb{\hat{e}}_{k} \right) \left( \vb{\hat{e}}_{j} \vdot \vb{\hat{e}}_{\ell} \right) & \text{Using \ref{equation:vec_dyad_vec_double_vec_dyad_vec}} \\
+		&& &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} S_{ij} T_{ij} & \text{Using \ref{equation:uvec_dot_uvec}} \\
+	\end{flalign}
+\end{proof}

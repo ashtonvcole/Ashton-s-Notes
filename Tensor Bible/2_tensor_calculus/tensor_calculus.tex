@@ -1,0 +1,154 @@
+\chapter{Tensor Calculus}
+\label{chapter:Tensor-Calculus}
+
+%&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
+
+differentiate nabla and grad
+
+in different coordinate systems
+
+expand to field...define operations...basis changes locally
+
+INTRODUCING NABLA OPERATOR
+
+\section{Introducing Nabla}
+\label{section:Introducing_Nabla}
+
+\begin{flalign}
+	&& \grad &:= \sum_{i = 1}^{m} \pdv{x_{i}} \vb{\hat{e}}_{i} & \label{equation:nabla} \\
+	&& \grad[ \dots ] = \grad \otimes \left[ \dots \right] &:= \sum_{i = 1}^{m} \pdv{x_{i}} \left[ \vb{\hat{e}}_{i} \otimes \dots \right] & \label{equation:grad} \\
+	&& \div[ \dots ] &:= \sum_{i = 1}^{m} \pdv{x_{i}} \left[ \vb{\hat{e}}_{i} \vdot \dots \right] & \label{equation:div} \\
+	&& \curl[ \dots ] &:= \sum_{i = 1}^{m} \pdv{x_{i}} \left[ \vb{\hat{e}}_{i} \cross \dots \right] & \label{equation:curl}
+\end{flalign}
+
+\section{Gradient}
+\label{section:gradient}
+
+\begin{flalign}
+	&& \grad{\phi} &= \dots & \text{Proof \ref{proof:grad_scal}} \label{equation:grad_scal} \\
+	&& \grad{\vb{a}} &= \dots & \text{Proof \ref{proof:grad_vec}} \label{equation:grad_vec} \\
+	&& \grad{\vb{S}} &= \dots & \text{Proof \ref{proof:grad_tens}} \label{equation:grad_tens} \\
+	&& \Grad \phi &= \dots & \\
+	&& \Grad \vb{a} &= \dots & \\
+	&&\Grad \vb{S} &= \dots & \\
+\end{flalign}
+
+\subsection{Gradient Product Rules}
+\label{section:gradient_product_rules}
+
+\subsubsection{First Order Value, Zeroth Order Operand}
+
+\begin{flalign}
+	&& \grad{\left( \phi \kappa \right)} &= \phi \grad{\kappa} + \kappa \grad{\phi} & \text{Proof \ref{proof:grad_scal_scal}} \label{equation:grad_scal_scal} \\
+	&& \grad{\left( \vb{a} \vdot \vb{b} \right)} &= \left( \grad{\vb{b}} \right) \vb{a} + \left( \grad{\vb{a}} \right) \vb{b} *** & \text{Proof \ref{proof:grad_vec_dot_vec}} \label{equation:grad_vec_dot_vec} \\
+	&& \grad{\left( \vb{S} \vddot \vb{T} \right)} &= \left( \grad{\vb{T}} \right) \vddot \vb{S} + \left( \grad{\vb{S}} \right) \vddot \vb{T} & \text{Proof \ref{proof:grad_tens_double_tens}} \label{equation:grad_tens_double_tens}
+\end{flalign}
+
+\subsubsection{Second Order Value, First Order Operand}
+
+\begin{flalign}
+	&& \grad{\left( \phi \vb{a} \right)} &= \dots & \text{Proof \ref{proof:grad_scal_vec}} \label{equation:grad_scal_vec} \\
+	&& \grad{\left( \vb{S} \vb{a} \right)} &= \dots & \text{Proof \ref{proof:grad_tens_dot_vec}} \label{equation:grad_tens_dot_vec} \\
+	&& \grad{\left( \vb{y} \vdot \vb{S} \right)} &= \dots & \text{Proof \ref{proof:grad_vec_dot_tens}} \label{equation:grad_vec_dot_tens} \\
+	&& \grad{\left( \vb{u} \cross \vb{v} \right)} &= \dots & \text{Proof \ref{proof:grad_vec_cross_vec}} \label{equation:grad_vec_cross_vec}
+\end{flalign}
+
+\subsubsection{Third Order Value, Second Order Operand}
+
+\begin{flalign}
+	&& \grad{\left( \phi \vb{S} \right)} &= \dots & \text{Proof \ref{proof:grad_scal_tens}} \label{equation:grad_scal_tens} \\
+	&& \grad{\left( \vb{a} \otimes \vb{y} \right)} &= \dots & \text{Proof \ref{proof:grad_vec_dyad_vec}} \label{equation:grad_vec_dyad_vec} \\
+	&& \grad{\left( \vb{S} \vb{U} \right)} &= \dots & \text{Proof \ref{proof:grad_tens_dot_tens}} \label{equation:grad_tens_dot_tens}
+\end{flalign}
+
+\section{Divergence}
+\label{section:divergence}
+
+\begin{flalign}
+	&& \div{\vb{a}} &= \dots & \text{Proof \ref{proof:div_vec}} \label{equation:div_vec} \\
+	&& \div{\vb{S}} &= \dots & \text{Proof \ref{proof:div_tens}} \label{equation:div_tens} \\
+	&& \Div \vb{a} &= \dots & \text{Proof \ref{proof:Div_vec}} \label{equation:Div_vec} \\
+	&& \Div{\vb{S}} &= \dots & \text{Proof \ref{proof:Div_tens}} \label{equation:Div_tens}
+\end{flalign}
+
+\subsection{Divergence Product Rules}
+\label{section:divergence_product_rules}
+
+\subsubsection{Zeroth Order Value, First Order Operand}
+
+\begin{flalign}
+	&& \div{\left(\phi \vb{a} \right)} &= \phi \div{\vb{a}} + \vb{a} \vdot \grad{\phi} & \text{Proof \ref{proof:div_scal_vec}} \label{equation:div_scal_vec} \\
+	&& \div{\left( \vb{S} \vb{a} \right)} &= \vb{S} \vddot \grad{\vb{a}} + \vb{a} \vdot \left( \div{\vb{S}} \right) & \text{Proof \ref{proof:div_tens_dot_vec}} \label{equation:div_tens_dot_vec} \\
+	&& \div{\left( \vb{y} \vdot \vb{S} \right)} &= \left( \vb{S}^{T} \right) \vddot \grad{\vb{y}} + \vb{y} \vdot \left( \div{\left( \vb{S}^{T} \right)} \right) & \text{Proof \ref{proof:div_vec_dot_tens}} \label{equation:div_vec_dot_tens} \\
+	&& \div{\left( \vb{u} \cross \vb{v} \right)} &= \dots & \text{Proof \ref{proof:div_vec_cross_vec}} \label{equation:div_vec_cross_vec}
+\end{flalign}
+
+\subsubsection{First Order Value, Second Order Operand}
+
+\begin{flalign}
+	&& \div{\left(\phi \vb{S} \right)} &= \phi \div{\vb{S}} + \grad{\phi} \vdot \vb{S} & \text{Proof \ref{proof:div_scal_tens}} \label{equation:div_scal_tens} \\
+	&& \div{\left( \vb{a} \otimes \vb{y} \right)} &= \vb{a} \vdot \grad{\vb{y}} + \vb{y} \left( \div{\vb{a}} \right) & \text{Proof \ref{proof:div_vec_dyad_vec}} \label{equation:div_vec_dyad_vec} \\
+	&& \div{\left( \vb{S} \vb{U} \right)} &= \vb{S} \vddot \left( \grad{\vb{U}} \right) + \left( \div{\vb{S}} \right) \vb{U} & \text{Proof \ref{proof:div_tens_dot_tens}} \label{equation:div_tens_dot_tens}
+\end{flalign}
+
+\section{Curl}
+\label{section:curl}
+
+\begin{flalign}
+	&& \curl{\vb{a}} &= \dots & \text{Proof \ref{proof:curl_vec}} \label{equation:curl_vec} \\
+	&& \curl{\vb{S}} &= \dots & \text{Proof \ref{proof:curl_tens}} \label{equation:curl_tens} \\
+	&& \Curl \vb{a} &= \dots & \\
+	&& \Curl \vb{S} &= \dots & 
+\end{flalign}
+
+\subsection{Curl Product Rules}
+\label{section:curl_product_rules}
+
+\subsubsection{First Order Value, First Order Operand}
+
+\section{Laplacian}
+\label{section:laplacian}
+
+\subsection{Laplacian Product Rules}
+\label{section:laplacian_product_rules}
+
+\subsubsection{Zeroth Order Value, Zeroth Order Operand}
+
+\begin{flalign}
+	&& \laplacian{ \left( \phi \kappa \right) } &= \dots & \text{Proof \ref{proof:lap_scal_scal}} \label{equation:lap_scal_scal} \\
+	&& \laplacian{ \left( \vb{a} \vdot \vb{b} \right) } &= \dots & \text{Proof \ref{proof:lap_vec_dot_vec}} \label{equation:lap_vec_dot_vec} \\
+	&& \laplacian{  \left( \vb{S} \vddot \vb{T} \right) } &= \dots & \text{Proof \ref{proof:lap_tens_double_tens}} \label{equation:lap_tens_double_tens}
+\end{flalign}
+
+\subsubsection{First Order Value, First Order Operand}
+
+\begin{flalign}
+	&& \laplacian{\left(\phi \vb{a} \right)} &= \dots & \text{Proof \ref{proof:lap_scal_vec}} \label{equation:lap_scal_vec} \\
+	&& \laplacian{\left( \vb{S} \vb{a} \right)} &= \dots & \text{Proof \ref{proof:lap_tens_dot_vec}} \label{equation:lap_tens_dot_vec} \\
+	&& \laplacian{\left( \vb{y} \vdot \vb{S} \right)} &= \dots & \text{Proof \ref{proof:lap_vec_dot_tens}} \label{equation:lap_vec_dot_tens} \\
+	&& \laplacian{\left( \vb{u} \cross \vb{v} \right)} &= \dots & \text{Proof \ref{proof:lap_vec_cross_vec}} \label{equation:lap_vec_cross_vec}
+\end{flalign}
+
+\subsubsection{Second Order Value, Second Order Operand}
+
+\begin{flalign}
+	&& \laplacian{\left(\phi \vb{S} \right)} &= \dots & \text{Proof \ref{proof:lap_scal_tens}} \label{equation:lap_scal_tens} \\
+	&& \laplacian{\left( \vb{a} \otimes \vb{y} \right)} &= \dots & \text{Proof \ref{proof:lap_vec_dyad_vec}} \label{equation:lap_vec_dyad_vec} \\
+	&& \laplacian{\left( \vb{S} \vb{U} \right)} &= \dots & \text{Proof \ref{proof:lap_tens_dot_tens}} \label{equation:lap_tens_dot_tens}
+\end{flalign}
+
+\section{Other Second Derivatives}
+\label{section:other_second_derivatives}
+
+div of curl = 0
+
+curl of grad = 0
+
+\section{Function Derivatives}
+\label{section:function_derivatives}
+
+derivative of vector value/input functions
+
+compositions thereof
+
+derivative of determinant, etc

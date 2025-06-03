@@ -1,0 +1,10 @@
+\begin{proof}[Equation \ref{equation:div_scal_tens}]
+	\label{proof:div_scal_tens}
+	\begin{flalign}
+		&& \div{\left( \phi \vb{S} \right)} &= \left( \sum_{i = 1}^{m} \vb{\hat{e}}_{i} \pdv{x_{i}} \right) \vdot \left( \phi \sum_{j = 1}^{m} \sum_{k = 1}^{n} S_{jk} \vb{\hat{e}}_{j} \otimes \vb{\hat{e}}_{k} \right) & \text{Using \ref{equation:div}, \ref{equation:tens}} \\
+		&& &= \sum_{i = 1}^{m} \sum_{j = 1}^{m} \sum_{k = 1}^{n} \pdv{\left( \phi S_{jk} \right)}{x_{i}} \vb{\hat{e}}_{i} \vdot \left( \vb{\hat{e}}_{j} \otimes \vb{\hat{e}}_{k} \right) & \\
+		&& &= \sum_{i = 1}^{m} \sum_{j = 1}^{m} \sum_{k = 1}^{n} \left( \phi \pdv{S_{jk}}{x_{i}} + S_{jk} \pdv{\phi}{x_{i}} \right) \left( \vb{\hat{e}}_{i} \vdot \vb{\hat{e}}_{j} \right) \vb{\hat{e}}_{k} & \text{Using \ref{equation:vec_dot_vec_dyad_vec}} \\
+		&& &= \sum_{i = 1}^{m} \sum_{k = 1}^{n} \phi \pdv{S_{ik}}{x_{i}} \vb{\hat{e}}_{k} + S_{ik} \pdv{\phi}{x_{i}} \vb{\hat{e}}_{k} & \text{Using \ref{equation:uvec_dot_uvec}} \\
+		&& &= \phi \div{\vb{S}} + \grad{\phi} \vdot \vb{S} & \text{Using \ref{equation:div_tens}, \ref{equation:grad_scal}, \ref{equation:vec_dot_tens}}
+	\end{flalign}
+\end{proof}

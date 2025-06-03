@@ -1,0 +1,57 @@
+\documentclass{book}
+\usepackage{graphicx, float} % Required for inserting images
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, hyperref, listings, multirow, physics, placeins, thmtools}
+%\usepackage{newpxtext,newpxmath}
+%\usepackage{ebgaramond}
+%\usepackage{ebgaramond-maths}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proof}[theorem]{Proof}
+
+\DeclareMathOperator{\Grad}{grad}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\Curl}{curl}
+
+\newcommand{\vddot}{\boldsymbol{:}}
+
+\title{Tensor Bible}
+\author{Ashton Cole}
+\date{\today}
+
+\begin{document}
+	
+\frontmatter
+
+\maketitle
+
+\tableofcontents
+
+\listoftheorems
+
+\mainmatter
+
+
+
+before
+
+big picture
+
+what is a tensor
+
+algebraic object describing mulitilinear relationship between algebraic objects
+
+\input{tensor_algebra/tensor_algebra.tex}
+
+\input{tensor_calculus/tensor_calculus.tex}
+
+\backmatter
+
+\appendix
+
+\input{proofs/proofs.tex}
+
+\end{document}

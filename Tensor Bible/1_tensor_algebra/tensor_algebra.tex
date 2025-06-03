@@ -1,0 +1,199 @@
+\chapter{Tensor Algebra}
+\label{chapter:Tensor-Algebra}
+
+%&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
+
+\section{Getting Started}
+
+Ironically enough, this was the hardest section to write. It is easy to get lost in abstraction and pedantics. Go elsewhere for proper constructions and definitions. Do me a favor and please import your prior knowledge from linear algebra and geometry classes about vectors, Cartesian coordinates, dot and cross products, etc.
+
+I think that the best way to start is with a vector space. Tesors are always defined relative to some kind of vector space. Scalars are so-called zeroth-order tensors, vectors are so-called first-order tensors, and any other kind of tensor can be constructed from these. For all intents and purposes of continuum mechanics, it is sufficient to start with a Euclidean space, usually two- or three-dimensional, described by a Cartesian coordinate system, because this can be used to describe the physical world at our scale quite well.
+
+\subsection{Notation}
+
+Scalars are simply written as a letter, usually lower-case ($a$). Vectors are bolded ($\vb{a}$). When hand-written, they may have an arrow on top ($\vec{a}$) or a single underline ($\underline{a}$). Unit vectors, with a magnitude 1, may be marked with a circumflex ($\vu{a}$). Higher-order tensors are bolded and usually upper-case ($\vb{A}$). When written, they may have a number of underlines equal to their order.
+
+\section{Bases and Components}
+
+We start with some right-handed orthonormal basis $\{\vu{e}_{i}\}_{i = 1}^{n}$ for an $n$-dimensional Euclidean vector space $\mathbb{R}^{n}$. If these align with a Cartesian coordinate frame, or when a Cartesian coordinate frame is defined to line up with them, they're called the canonical basis, i.e. the standard one. Using the geometric definitions for the dot and cross product, the following relations exist between the basis vectors, represented in shorthand by the Kronecker delta $\delta$ and Levi-Civita symbol $\epsilon$.
+
+These products are both bilinear. The dot product commutes, and the cross product anti-commutes.
+
+\begin{flalign}
+	&& \vu{e}_{i} \vdot \vu{e}_{j} = \delta_{ij} &:= \begin{cases}
+		1, & i = j, \\
+		0, & i \neq j.
+	\end{cases} & \label{equation:uvec_dot_uvec} \\
+	&& \left( \vu{e}_{i} \cross \vu{e}_{j} \right) \vdot \vb{\hat{e}}_k = \epsilon_{ijk} &:= \begin{cases}
+		1, & (i, j, k) = (1, 2, 3), (2, 3, 1), \mathrm{or} \,(3, 1, 2), \\
+		-1, & (i, j, k) = (3, 2, 1), (2, 1, 3), \mathrm{or} \,(1, 3, 2), \\
+		0, & \mathrm{otherwise.}
+	\end{cases} & \label{equation:uvec_cross_uvec_dot_uvec}
+\end{flalign}
+
+Since any basis set is linearly independent and spans the vector space, any vector in the space may be represented in terms of such a basis. The coefficients of the linear combination are called components. It is important to note that these are not the same as coordinates, especially for non-Cartesian coordinate systems.
+
+\begin{flalign}
+	&& \vb{a} &= \sum_{i = 1}^{n} a_{i} \vu{e}_{i} & \label{equation:vec}
+\end{flalign}
+
+\subsection{Cobasis}
+
+If the chosen basis is not orthonormal with respect to some inner product and corresponding induced norm, then there is some more nuance. Sidestepping the excess mental infrastructure of the dual space and Riesz representation, the cobasis of some basis $\{\vb{f}_{i}\}_{i = 1}^{n}$, marked with a superscript as $\{\vb{f}^{i}\}_{i = 1}^{n}$, is another basis for the same space, which is bi-orthonormal to the basis.
+
+\begin{flalign}
+	&& \vb{f}^{i} \vdot \vb{f}_{j} = \vb{f}_{j} \vdot \vb{f}^{i} &= \delta_{ij} &
+\end{flalign}
+
+Notation for components in a non-orthonormal basis is more complicated. The contravariant components of the basis use superscripts, and the covariant components of the cobasis use subscripts. This may seem backwards, but this is the convention that was developed.
+
+\begin{flalign}
+	&& \vb{a} &= \sum_{i = 1}^{n} \tilde{a}^{i} \vb{f}_{i} & \label{equation:vec_contra} \\
+	&& \vb{a} &= \sum_{i = 1}^{n} \tilde{a}_{i} \vb{f}^{i} & \label{equation:vec_co}
+\end{flalign}
+
+Contra in contravariant refers to how the components scale inversely with the basis vectors. For example, if a basis is changed from inches to feet, the components used to represent a vector will shrink to represent the same length. On the other hand, the covariant components would increase.
+
+If one goes further into the weeds of tensor-world, there is a whole shorthand system of upstairs and downstairs indices used for tensors defined by a certain combination of bases and cobases. However, in continuum-world, one can fudge over all of these nuances by choosing to use an orthonormal basis, which is conveniently its own cobasis.
+
+\subsection{Independence of Basis}
+
+That freedom of choice is an important idea behind this tensor system. Up until this point, you were probably used to seeing vectors and matrices as lists and tables of numbers. Start with a unit vector $(1, 0)$. Rotate the coordinate frame 45 degrees clockwise and you get $(\sqrt{2} / 2, \sqrt{2} / 2)$. This would seem like a new and unequal vector, since $(1, 0) \neq (\sqrt{2} / 2, \sqrt{2} / 2)$.
+
+Writing them in terms of components of particular bases allows for more abstraction and flexibility. The vector is no longer the tuple per se, but is represented by a tuple in the context of a particular reference frame. The vector and the physical quantity it represents stay the same conceptually, regardless of the frame of reference: $\vb{a} = \sum_{i = 1}^{n} a_{i} \vu{e}_{i} = \sum_{i = 1}^{n} \tilde{a}^{i} \vb{f}_{i} = \sum_{i = 1}^{n} \tilde{a}_{i} \vb{f}^{i}$. Only components vary. So we can say for the prior example, labeling the coordinate frames as A and B, $(1, 0)_{A} = (\sqrt{2} / 2, \sqrt{2} / 2)_{B}$. Operations and properties like an inner product, cross product, norm should stay the same, too. However, it may not necessarily be that $\vb{a} \vdot \vb{b} = \sum_{i = 1}^{n} \tilde{a}^{i} \tilde{b}^{i}$, because the dot product is defined geometrically, not algebraically.
+
+\subsection{Computing Components}
+
+\subsection{Curvilinear Coordinates}
+
+same vector using different coordinates
+
+\section{Kronecker Delta and Levi-Civita Symbol Identities}
+
+The Kronecker Delta and Levi-Civita Symbol have the following identities which are useful in proof.
+
+\begin{flalign}
+	&& a &= b & \text{Proof \ref{proof:aaa}} \label{equation:aaa} \\
+	&& a &= b & \text{Proof \ref{proof:bbb}} \label{equation:bbb} \\
+	&& \epsilon_{pqs} \epsilon_{nrs} &= \delta_{pn} \delta_{qr} - \delta_{pr} \delta_{qn} & \text{Proof \ref{proof:eps_pqs_eps_nrs}} \label{equation:eps_pqs_eps_nrs} \\
+	&& \epsilon_{pqs} \epsilon_{rqs} &= 2 \delta_{pr} & \text{Proof \ref{proof:eps_pqs_eps_rqs}} \label{equation:eps_pqs_eps_rqs}
+\end{flalign}
+
+\section{Einstein Notation}
+
+\section{Dyads and Dyadics}
+
+\section{Contractions}
+
+\section{Relation to Linear Algebra}
+
+isomorphic to linear algebra if appropriate combination of basis/cobasis
+
+linearity
+
+coordinate vs non coordinate basis
+
+components
+
+deltas and epsilons, symbols, only up to rank 2, etc
+
+einstein notation
+
+tensor as operator
+
+basis independence
+
+isomorphism
+
+definitions contrived to fulfill certain properties
+
+using dyadic symbol and not
+
+defining property of dyadic, compare to linear algebra
+
+simple properties of each product (distributive, associative, commutative) that may depend on the operands
+
+linear algebra comparison
+
+computing in canonical basis
+
+introducing the dot product
+
+introducing the cross product
+
+introducing the dyadic product
+
+specifically takes two vectors
+
+non commutative
+
+scalar rule
+
+simple contractions
+
+double contractions
+
+change of basis
+
+invariants of vectors and tensors
+
+symmetric, skew-symmetric
+
+complex numbers
+
+\begin{itemize}
+	\item $\phi, \kappa \in \mathbb{R}$
+	\item $\vb{a}, \vb{b}, \vb{c}, \vb{d} \in \mathbb{R}^{n}$
+	\item $\vb{x}, \vb{y} \in \mathbb{R}^{m}$
+	\item $\vb*{\omega} \in \mathbb{R}^{p}$
+	\item $\vb{u}, \vb{v}, \vb{w} \in \mathbb{R}^{3}$
+	\item $\vb{Q}, \vb{R} \in \mathbb{R}^{m \times m}$
+	\item $\vb{S}, \vb{T} \in \mathbb{R}^{m \times n}$
+	\item $\vb{U} \in \mathbb{R}^{n \times p}$
+	\item $\vb{A}, \vb{B} \in \mathbb{R}^{3 \times 3}$
+\end{itemize}
+
+INTRODUCING VECTORS
+
+\begin{flalign}
+	&& \vb{S} &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} S_{ij} \vb{\hat{e}}_{i} \otimes \vb{\hat{e}}_{j} & \label{equation:tens} \\
+	&& \vb{u} \cross \vb{v} &= \sum_{i = 1}^{3} \sum_{j = 1}^{3} \sum_{k = 1}^{3} u_{i} v_{j} \epsilon_{ijk} \vb{\hat{e}}_{k} & \\
+\end{flalign}
+
+INTRODUCING TENSORS
+
+\begin{flalign}
+	&& \left( \vb{a} \otimes \vb{x} \right) \vb{y} &:= \vb{a} \left( \vb{x} \vdot \vb{y} \right) & \label{equation:vec_dyad_vec_dot_vec} \\
+	&& \vb{a} \vdot \left( \vb{b} \otimes \vb{x} \right) &:= \left( \vb{a} \vdot \vb{b} \right) \vb{x} & \label{equation:vec_dot_vec_dyad_vec} \\
+	&& \vb{x} \vdot \left( \vb{y} \otimes \vb{a} \right) \vb{b} &= \dots & \text{Proof \ref{proof:vec_dot_vec_dyad_vec_dot_vec}} \label{equation:vec_dot_vec_dyad_vec_dot_vec} \\
+	&& \left( \vb{a} \otimes \vb{x} \right)^{T} &:= \vb{x} \otimes \vb{a} & \\
+	&& \trace \left( \vb{a} \otimes \vb{b} \right) &:= \vb{a} \vdot \vb{b} & \\
+	&& \left( \vb{a} \otimes \vb{x} \right) \left( \vb{y} \otimes \vb*{\omega} \right) &= \left( \vb{x} \vdot \vb{y} \right) \left( \vb{a} \otimes \vb*{\omega} \right) & \text{Proof \ref{proof:vec_dyad_vec_dot_vec_dyad_vec}} \label{equation:vec_dyad_vec_dot_vec_dyad_vec} \\
+	&& \left( \vb{a} \otimes \vb{x} \right) \vddot \left( \vb{b} \otimes \vb{y} \right) &:= \left( \vb{a} \vdot \vb{b} \right) \left( \vb{x} \vdot \vb{y} \right) & \label{equation:vec_dyad_vec_double_vec_dyad_vec} \\
+	&& \vb{a} \otimes \vb{x} &= \sum_{i = 1}^{n} \sum_{j = 1}^{m} a_{i} x_{j} \vb{\hat{e}}_{i} \otimes \vb{\hat{e}}_{j} & \\
+\end{flalign}
+
+CONTRACTIONS
+
+\begin{flalign}
+	&& \vb{a} \vdot \vb{b} &= \sum_{i = 1}^{n} a_{i} b_{i} & \text{Proof \ref{proof:vec_dot_vec}} \label{equation:vec_dot_vec} \\
+	&& \vb{S} \vb{a} = \vb{S} \vdot \vb{a} &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} S_{ij} a_{j} \vb{\hat{e}}_{i} & \text{Proof \ref{proof:tens_dot_vec}} \label{equation:tens_dot_vec} \\
+	&& \vb{x} \vdot \vb{S} &= \sum_{i = 1}^{m} \sum_{k = 1}^{n} x_{i} S_{ik} \vb{\hat{e}}_{k} & \text{Proof \ref{proof:vec_dot_tens}} \label{equation:vec_dot_tens} \\
+	&& \vb{S} \vb{U} &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} \sum_{\ell = 1}^{p} S_{ij} U_{j\ell} \left( \vb{\hat{e}}_{i} \otimes \vb{\hat{e}}_{\ell} \right) & \text{Proof \ref{proof:tens_dot_tens}} \label{equation:tens_dot_tens} \\
+	&& \vb{S} \vddot \vb{T} &= \sum_{i = 1}^{m} \sum_{j = 1}^{n} S_{ij} T_{ij} & \text{Proof \ref{proof:tens_double_tens}} \label{equation:tens_double_tens}
+\end{flalign}
+
+\section{Miscellaneous Operations}
+\label{section:miscellaneous_operations}
+
+\subsection{Change of Basis}
+\label{section:change_of_basis}
+
+\section{Helpful Identities}
+\label{section:helpful_identities}
+
+\begin{flalign}
+	&& \vb{S} \vb{a} &= \vb{a} \vdot \left( \vb{S}^{T} \right) & \text{Proof \ref{proof:tens_dot_vec_2}} & \label{equation:tens_dot_vec_2} \\
+	&& \left( \vb{x} \vdot \vb{S} \right) \vdot \vb{a} &= \vb{x} \vdot \left( \vb{S} \vb{a} \right) & \text{Proof \ref{proof:vec_dot_tens_dot_vec}} \label{equation:vec_dot_tens_dot_vec} \\
+	&& \left( \vb{S}^{T} \right) \vddot \vb{V} &= \vb{S} \vddot \left( \vb{V}^{T} \right) & \text{Proof \ref{proof:tens_trans_double_tens}} & \label{equation:tens_trans_double_tens}
+\end{flalign}

@@ -1,0 +1,10 @@
+\begin{proof}[Equation \ref{equation:div_scal_vec}]
+	\label{proof:div_scal_vec}
+	\begin{flalign}
+		&& \div{\left(\phi \vb{a} \right)} &= \sum_{i = 1}^{n} \pdv{x_{i}} \left[ \vb{\hat{e}_{i}} \vdot \left( \phi \sum_{j = 1}^{n} a_{j} \vb{\hat{e}}_{j} \right) \right] & \text{Using \ref{equation:div}, \ref{equation:vec}} \\
+		&& &= \sum_{i = 1}^{n} \sum_{j = 1}^{n} \pdv{\phi a_{j}}{x_{i}} \left( \vb{\hat{e}_{i}} \vdot \vb{\hat{e}}_{j} \right) & \\
+		&& &= \sum_{i = 1}^{n} \pdv{\phi a_{i}}{x_{i}} & \text{Using \ref{equation:uvec_dot_uvec}} \\
+		&& &= \sum_{i = 1}^{n} \left( \phi \pdv{a_{i}}{x_{i}} + a_{i} \pdv{\phi}{x_{i}} \right) & \\
+		&& &= \phi \div{\vb{a}} + \vb{a} \vdot \grad{\phi} & \text{Using \ref{equation:div_vec}, \ref{equation:vec_dot_vec}, \ref{equation:grad_scal}}
+	\end{flalign}
+\end{proof}
