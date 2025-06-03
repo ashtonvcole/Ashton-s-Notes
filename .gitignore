@@ -3,4 +3,8 @@
 *.aux
 *.bbl
 *.blg
+*.loe
 *.log
+*.out
+*.synctex.gz
+*.toc
