@@ -7,6 +7,8 @@ full navier stokes
 
 incompressible
 
+rans
+
 stokes flow
 
 euler equations
@@ -17,6 +19,17 @@ my special acoustic equations
 
 shallow water equations
 
+\section{Shallow Water Equations}
+
+\begin{flalign}
+	&& \pdv{\left( \rho \eta \right)}{t} + \Div{\left( \rho \eta \vb{u} \right)} &= 0 & \text{Proof \ref{proof:swe_com}} \label{equation:swe_com} \\
+	&& \pdv{\left( \rho \eta \vb{u} \right)}{t} + \Div{\left( \rho \eta \vb{u} \otimes \vb{u} + \frac{1}{2} \rho g \eta^{2} \vb{I} \right)} &= 0 & \text{Proof \ref{proof:swe_cop}} \label{equation:swe_cop}
+\end{flalign}
+
+\subsection{Closures and Assumptions}
+
 diffusive wave equations
+
+bernoulli
 
 groundwater darcy flow

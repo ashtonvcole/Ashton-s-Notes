@@ -3,11 +3,19 @@
 
 %&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
 
+Ironically enough, this was the hardest section to write. It is easy to get lost in abstraction and pedantics.
+
+I think that the best way to start is with vectors. Tesors are always defined relative to some kind of vector space. Scalars are so-called zeroth-order tensors, vectors are so-called first-order tensors, and any other kind of tensor can be constructed from these.
+
 \section{Vector Space}
+
+examples of vector spaces
 
 \section{Dual Space}
 
 \subsection{Isometric Isomorphism}
+
+Riesz representation and dealing with complex vector spaces
 
 \section{Inner Product and Norm}
 
@@ -25,9 +33,7 @@ also fields which are functions
 
 \section{Getting Started}
 
-Ironically enough, this was the hardest section to write. It is easy to get lost in abstraction and pedantics. Go elsewhere for proper constructions and definitions. Do me a favor and please import your prior knowledge from linear algebra and geometry classes about vectors, Cartesian coordinates, dot and cross products, etc.
-
-I think that the best way to start is with a vector space. Tesors are always defined relative to some kind of vector space. Scalars are so-called zeroth-order tensors, vectors are so-called first-order tensors, and any other kind of tensor can be constructed from these. For all intents and purposes of continuum mechanics, it is sufficient to start with a Euclidean space, usually two- or three-dimensional, described by a Cartesian coordinate system, because this can be used to describe the physical world at our scale quite well.
+For all intents and purposes of continuum mechanics, it is sufficient to start with a Euclidean space, usually two- or three-dimensional, described by a Cartesian coordinate system, because this can be used to describe the physical world at our scale quite well.
 
 \subsection{Notation}
 
@@ -83,6 +89,8 @@ That freedom of choice is an important idea behind this tensor system. Up until 
 Writing them in terms of components of particular bases allows for more abstraction and flexibility. The vector is no longer the tuple per se, but is represented by a tuple in the context of a particular reference frame. The vector and the physical quantity it represents stay the same conceptually, regardless of the frame of reference: $\vb{a} = \sum_{i = 1}^{n} a_{i} \vu{e}_{i} = \sum_{i = 1}^{n} \tilde{a}^{i} \vb{f}_{i} = \sum_{i = 1}^{n} \tilde{a}_{i} \vb{f}^{i}$. Only components vary. So we can say for the prior example, labeling the coordinate frames as A and B, $(1, 0)_{A} = (\sqrt{2} / 2, \sqrt{2} / 2)_{B}$. Operations and properties like an inner product, cross product, norm should stay the same, too. However, it may not necessarily be that $\vb{a} \vdot \vb{b} = \sum_{i = 1}^{n} \tilde{a}^{i} \tilde{b}^{i}$, because the dot product is defined geometrically, not algebraically.
 
 \subsection{Computing Components}
+
+differentiate coordinates and components
 
 \subsection{Curvilinear Coordinates}
 
