@@ -7,6 +7,12 @@ Topics:
 
 continuum assumptions
 
+reynolds transport theorem, i.e. leibniz integral rule
+
+cauchy theorem
+
+cauchy theorem for heat flux
+
 general conservation laws: integral and differential, material and spatial
 
 mass
@@ -16,6 +22,10 @@ momentum
 energy
 
 entropy inequality
+
+define control volume properly, relate vt to v0, same for omega
+
+\section{Variables}
 
 \section{Conservation of Mass}
 
@@ -28,6 +38,7 @@ entropy inequality
 \subsection{Spatial Frame}
 
 \begin{flalign}
+	&& \dv{t} \int_{\vb{x} \in V \subseteq \Omega_{t}} \rho(\vb{x}, t) \dd{V} + \int_{\vb{x} \in \partial V} \rho(\vb{x}, t) \vb{v}(\vb{x}, t) \vdot \hat{\vb{n}}(\vb{x}) \dd{(\partial  V)} &= 0 & \text{Integral form. Proof \ref{proof:com_sf_int}} \label{equation:com_sf_int} \\
 	&& \pdv{\rho}{t} + \div{\rho \vb{v}} &= 0 & \text{Proof \ref{proof:com_sf_dif}} \label{equation:com_sf_dif}
 \end{flalign}
 
@@ -57,6 +68,7 @@ entropy inequality
 \subsection{Spatial Frame}
 
 \begin{flalign}
+	&& \pdv{\left( \vb{x} \cross \rho \vb{v} \right)}{t} + \Div{\left( \vb{x} \cross \rho \vb{v} \otimes \vb{v} \right)} &= \Div{\left(\vb{x} \cross \vb*{\sigma}\right)} + \vb{x} \cross \rho \vb{b} & \text{Conservative form. Proof \ref{proof:col_sf_dif_cons}} \label{equation:col_sf_dif_cons} \\
 	&& \vb*{\sigma} &= \vb*{\sigma}^{T} & \text{Reduced form. Proof \ref{proof:col_sf_dif_red}} \label{equation:col_sf_dif_red} \\
 \end{flalign}
 
