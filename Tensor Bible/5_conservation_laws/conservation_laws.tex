@@ -35,33 +35,57 @@ entropy inequality
 
 \subsection{Material Frame}
 
+\begin{flalign}
+	&& \rho_{0} \dv{V}{t} &= \Div_{\vb{X}} \vb{P} + \rho_{0} \vb{B} & \text{Proof \ref{proof:cop_mf_dif}} \label{equation:cop_mf_dif} \\
+\end{flalign}
+
 \subsection{Spatial Frame}
+
+\begin{flalign}
+	&& \pdv{\left( \rho \vb{v} \right)}{t} + \Div{\left( \rho \vb{v} \otimes \vb{v} \right)} &= \Div{\vb*{\sigma}} + \rho \vb{b} & \text{Conservative form. Proof \ref{proof:cop_sf_dif_cons}} \label{equation:cop_sf_dif_cons} \\
+	&& \rho \left(\pdv{\vb{v}}{t} + \left( \Grad{\vb{v}} \right) \vb{v}\right) &= \Div{\vb*{\sigma}} + \rho \vb{b} & \text{Reduced form. Proof \ref{proof:cop_sf_dif_red}} \label{equation:cop_sf_dif_red} \\
+\end{flalign}
+
+\section{Conservation of Angular Momentum}
+
+\subsection{Material Frame}
+
+\begin{flalign}
+	&& \vb{S} &= \vb{S}^{T} & \text{Reduced form. Proof \ref{proof:col_mf_dif_red}} \label{equation:col_mf_dif_red} \\
+\end{flalign}
+
+\subsection{Spatial Frame}
+
+\begin{flalign}
+	&& \vb*{\sigma} &= \vb*{\sigma}^{T} & \text{Reduced form. Proof \ref{proof:col_sf_dif_red}} \label{equation:col_sf_dif_red} \\
+\end{flalign}
 
 \section{Conservation of Energy}
 
 \subsection{Material Frame}
 
+\begin{flalign}
+	&& \rho_{0} \dv{I}{t} + \Div_{\vb{X}} \vb{Q} &= \rho_{0} \vb{R} + \vb{S} \vddot \vb{D} & \text{Proof \ref{proof:tot_coe_mf_dif}} \label{equation:tot_coe_mf_dif} \\
+\end{flalign}
+
 \subsection{Spatial Frame}
 
-\section{Combined Equations}
+\begin{flalign}
+	&& \pdv{\left( \rho e \right)}{t} + \Div{\left( \rho e \vb{v} \right)} &= \Div{\left( \vb*{\sigma} \vb{v} \right)}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Conservation form. Proof \ref{proof:coe_sf_dif_cons}} \label{equation:coe_sf_dif_cons} \\
+	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{D}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
+\end{flalign}
+
+\section{Entropy Inequality}
 
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \rho_{0} &= \rho \circ \phi_{t} J & \text{Proof \ref{proof:tot_com_mf_dif}} \label{equation:tot_com_mf_dif} \\
-	&& \rho_{0} \dv{V}{t} &= \Div_{\vb{X}} \vb{P} + \rho_{0} \vb{B} & \text{Proof \ref{proof:tot_cop_mf_dif}} \label{equation:tot_cop_mf_dif} \\
-	&& \vb{S} &= \vb{S}^{T} & \text{Proof \ref{proof:tot_col_mf_dif}} \label{equation:tot_col_mf_dif} \\
-	&& \rho_{0} \dv{I}{t} + \Div_{\vb{X}} \vb{Q} &= \rho_{0} \vb{R} + \vb{S} \vddot \vb{D} & \text{Proof \ref{proof:tot_coe_mf_dif}} \label{equation:tot_coe_mf_dif} \\
 	&& \rho_{0} \dv{N}{t} + \Div_{\vb{X}}\frac{\vb{Q}}{\Theta} &\geq \rho_{0} \frac{R}{\Theta} & \text{Proof \ref{proof:tot_ion_mf_dif}} \label{equation:tot_ion_mf_dif}
 \end{flalign}
 
 \subsection{Spatial Frame}
 
 \begin{flalign}
-	&& a &= b & \text{Proof \ref{proof:tot_com_sf_dif}} \label{equation:tot_com_sf_dif} \\
-	&& \pdv{\left( \rho \vb{v} \right)}{t} + \Div{\left( \rho \vb{v} \otimes \vb{v} \right)} &= \Div{\vb*{\sigma}} + \rho \vb{b} & \text{Proof \ref{proof:tot_cop_sf_dif}} \label{equation:tot_cop_sf_dif} \\
-	&& \vb*{\sigma} &= \vb*{\sigma}^{T} & \text{Proof \ref{proof:tot_col_sf_dif}} \label{equation:tot_col_sf_dif} \\
-	&& \pdv{\left( \rho e \right)}{t} + \Div{\left( \rho e \vb{v} \right)} &= \Div{\left( \vb*{\sigma} \vb{v} \right)}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Proof \ref{proof:tot_coe_sf_dif}} \label{equation:tot_coe_sf_dif} \\
 	&& \pdv{\left( \rho \eta \right)}{t} + \Div{\left( \rho \eta \vb{v} \right)} + \Div{\frac{\vb{q}}{\Theta}} - \rho r &\geq 0 & \text{Proof \ref{proof:tot_ion_sf_dif}} \label{equation:tot_ion_sf_dif} \\
 \end{flalign}
 
