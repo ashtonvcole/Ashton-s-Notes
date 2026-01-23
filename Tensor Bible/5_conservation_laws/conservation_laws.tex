@@ -30,6 +30,28 @@ define control volume properly, relate vt to v0, same for omega
 \begin{itemize}
 	\item $\rho_{0} = \rho_{0}(\vb{X})$: density in material frame
 	\item $\rho = \rho(\vb{x}, t)$: density in spatial frame
+	\item $\vb{S} = \vb{S}(\vb{X}, t)$: second Piola-Kirchoff stress tensor in material frame
+	\begin{itemize}
+		\item $\vb{S} := J \vb{F}^{-1} \vb*{\sigma} \vb{F}^{-T}$
+	\end{itemize}
+	\item $\vb{P} = \vb{P}(\vb{X}, t)$: first Piola-Kirchoff stress tensor in material frame
+	\begin{itemize}
+	\item $\vb{P} := J \vb*{\sigma} \vb{F}^{-T} = \vb{F} \vb{S}$
+	\end{itemize}
+	\item $\vb*{\sigma} = \vb*{\sigma}(\vb{x}, t)$: Cauchy stress tensor in spatial frame
+	\item $\vb{B} = \vb{B}(\vb{X}, t)$: body force per unit mass in material frame
+	\item $\vb{b} = \vb{b}(\vb{x}, t)$: body force per unit mass in spatial frame
+	\item $E = E(\vb{X}, t)$: internal energy per unit mass in material frame
+	\item $e = e(\vb{X}, t)$: internal energy per unit mass in spatial frame
+	\item $I = I(\vb{X}, t)$: potential? energy per unit mass in material frame
+	\item $i = i(\vb{X}, t)$: potential? energy per unit mass in spatial frame
+	\item $\vb{Q} = \vb{Q}(\vb{X}, t)$: heat flux in material frame
+	\item $\vb{q} = \vb{q}(\vb{x}, t)$: heat flux in spatial frame
+	\item $\mathbb{C} = ???$: elasticity tensor in material frame
+	\begin{itemize}
+		\item $\mathbb{C} := \pdv{\vb{S}}{E} = \pdv[2]{\hat{\Psi}}{\vb{E}}$
+	\end{itemize}
+	\item $\mathbb{c} = ???$: elasticity tensor in spatial frame
 \end{itemize}
 
 \section{Conservation of Mass}
@@ -89,7 +111,7 @@ define control volume properly, relate vt to v0, same for omega
 
 \begin{flalign}
 	&& \pdv{\left( \rho e \right)}{t} + \Div{\left( \rho e \vb{v} \right)} &= \Div{\left( \vb*{\sigma} \vb{v} \right)}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Conservation form. Proof \ref{proof:coe_sf_dif_cons}} \label{equation:coe_sf_dif_cons} \\
-	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{D}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
+	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{d}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
 \end{flalign}
 
 \section{Entropy Inequality}
