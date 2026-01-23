@@ -42,17 +42,20 @@ define control volume properly, relate vt to v0, same for omega
 	\item $\vb{B} = \vb{B}(\vb{X}, t)$: body force per unit mass in material frame
 	\item $\vb{b} = \vb{b}(\vb{x}, t)$: body force per unit mass in spatial frame
 	\item $E = E(\vb{X}, t)$: internal energy per unit mass in material frame
-	\item $e = e(\vb{X}, t)$: internal energy per unit mass in spatial frame
+	\item $e = e(\vb{x}, t)$: internal energy per unit mass in spatial frame
 	\item $I = I(\vb{X}, t)$: potential? energy per unit mass in material frame
-	\item $i = i(\vb{X}, t)$: potential? energy per unit mass in spatial frame
+	\item $i = i(\vb{x}, t)$: potential? energy per unit mass in spatial frame
 	\item $\vb{Q} = \vb{Q}(\vb{X}, t)$: heat flux in material frame
 	\item $\vb{q} = \vb{q}(\vb{x}, t)$: heat flux in spatial frame
-	\item $\mathbb{C} = ???$: elasticity tensor in material frame
-	\begin{itemize}
-		\item $\mathbb{C} := \pdv{\vb{S}}{E} = \pdv[2]{\hat{\Psi}}{\vb{E}}$
-	\end{itemize}
-	\item $\mathbb{c} = ???$: elasticity tensor in spatial frame
+	\item $\Theta = \Theta(\vb{X}, t)$: temperature in material frame
+	\item $\theta = \theta(\vb{x}, t)$: temperature energy per unit mass in spatial frame
 \end{itemize}
+
+\section{Reynold's Transport Theorem}
+
+\begin{flalign}
+	&& \dv{t} \int_{\vb{x} \in V(t)} \vb{q} \dd{\Omega_{t}} &= \int_{\vb{x} \in V(t)} \pdv{\vb{q}}{t} \dd{\Omega_{t}} + \int_{\vb{x} \in \partial \left(V(t)\right)} \vb{q} \left( \vb{v} \vdot \vb{\hat{n}} \right) \dd{\partial \Omega_{t}} & \text{Proof \ref{proof:}} \label{equation:}
+\end{flalign}
 
 \section{Conservation of Mass}
 
