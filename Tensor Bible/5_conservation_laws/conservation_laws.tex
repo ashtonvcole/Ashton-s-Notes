@@ -3,33 +3,9 @@
 
 %&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
 
-Topics:
-
-continuum assumptions
-
-reynolds transport theorem, i.e. leibniz integral rule
-
-cauchy theorem
-
-cauchy theorem for heat flux
-
-general conservation laws: integral and differential, material and spatial
-
-mass
-
-momentum
-
-energy
-
-entropy inequality
+\section{Continuum Mechanics Assumptions}
 
 define control volume properly, relate vt to v0, same for omega
-
-explain variable capitalization is just change or domain mapping, don't confuse with piola tensors
-
-for applied laws, there are a million ways to express, but only including useful ones
-
-\section{Continuum Mechanics Assumptions}
 
 \section{Conservation Law Variables}
 
@@ -47,8 +23,8 @@ explain convention that $Q(\vb{X}, t) = q(\vb*{\varphi}(\vb{X}, t), t)$, also de
 		\item $\vb{P} := J \vb*{\Sigma} \vb{F}^{-T} = \vb{F} \vb{S}$
 	\end{itemize}
 	\item $\vb{B}, \vb{b}$: body force per unit mass in material/spatial frames
-	\item $E, e$: internal energy per unit mass in material frame
-	\item $I, i$: potential? energy per unit mass in material frame
+	\item $E, e$: energy per unit mass in material frame
+	\item $I, i$: internal energy per unit mass in material frame
 	\item $i = i(\vb{X}, t)$: potential? energy per unit mass in spatial frame
 	\item $\vb{Q}, \vb{q}$: heat flux in material/spatial frames
 \end{itemize}
@@ -60,12 +36,21 @@ explain convention that $Q(\vb{X}, t) = q(\vb*{\varphi}(\vb{X}, t), t)$, also de
 	&& \dv{t} \int_{V(t)} \vb{q} \dd{\Omega_{t}} &= \int_{V(t)} \pdv{\vb{q}}{t} \dd{\Omega_{t}} + \oint_{\partial V(t)} \vb{q} \left( \vb{v} \vdot \vb{\hat{n}} \right) \dd{S} & \text{Proof \ref{proof:rtv}} \label{equation:rtv}
 \end{flalign}
 
-\section{Cauchy Stress Hypothesis}
+\section{Closures}
+
+\subsection{Cauchy Stress Hypothesis}
 
 something something importance for divergence theorem and converting to differential form
 
 \begin{flalign}
 && \vb{t} &= \vb*{\sigma} \vb{\hat{n}} & \label{equation:csh_sf}
+\end{flalign}
+
+\subsection{Energy of Mass}
+
+\begin{flalign}
+	&& E &= I + \frac{1}{2} \vb{V} \vdot \vb{V} & \label{equation:energy_closure} \\
+	&& e &= i + \frac{1}{2} \vb{v} \vdot \vb{v} & \label{equation:energy_closure}
 \end{flalign}
 
 \section{Generic Scalar Conservation Laws}
@@ -134,6 +119,8 @@ If the conserved property is intensive, expressed per unit mass, the following c
 
 \section{Conservation of Mass}
 
+for applied laws, there are a million ways to express, but only including useful ones
+
 \begin{itemize}
 	\item Quantity: mass, $Q = \varrho, q = \rho$
 	\item Surface fluxes: none, $\vb*{\Phi} = \vb{0}, \vb*{\phi} = \vb{0}$
@@ -178,7 +165,7 @@ If the conserved property is intensive, expressed per unit mass, the following c
 
 \begin{itemize}
 	\item Quantity: angular momentum, $\vb{Q} = \vb*{\varphi} \cross \varrho \vb{V}, \vb{q} = \vb{x} \cross \rho \vb{v}$
-	\item Surface fluxes: Cauchy torque, $\vb*{\Phi} = -\vb*{\varphi} \cross \vb{\Sigma}, \vb*{\phi} = -\vb{x} \cross \vb{sigma}$
+	\item Surface fluxes: Cauchy torque, $\vb*{\Phi} = -\vb*{\varphi} \cross \vb*{\Sigma}, \vb*{\phi} = -\vb{x} \cross \vb*{\sigma}$
 	\item Internal sources: body torques, $\vb{R} = \vb*{\varphi} \cross \varrho \vb{B}, \vb{r} = \vb{x} \cross \rho \vb{b}$
 \end{itemize}
 
@@ -206,7 +193,7 @@ If the conserved property is intensive, expressed per unit mass, the following c
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \rho_{0} \dv{I}{t} + \Div_{\vb{X}} \vb{Q} &= \vb{S} \vddot \vb{D} + \rho_{0} \vb{B} \vdot \vb{V} + \rho_{0} \vb{R} & \text{Proof \ref{proof:tot_coe_mf_dif}} \label{equation:tot_coe_mf_dif} \\
+	&& \rho_{0} \dv{I}{t} &= \vb{S} \vddot \vb{D} - \Div_{\vb{X}} \vb{Q} + \rho_{0} \vb{R} & \text{Proof \ref{proof:coe_mf_dif_red}} \label{equation:tot_coe_mf_dif_red}
 \end{flalign}
 
 \subsection{Spatial Frame}
