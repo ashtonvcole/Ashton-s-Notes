@@ -60,6 +60,14 @@ explain convention that $Q(\vb{X}, t) = q(\vb*{\varphi}(\vb{X}, t), t)$, also de
 	&& \dv{t} \int_{V(t)} \vb{q} \dd{\Omega_{t}} &= \int_{V(t)} \pdv{\vb{q}}{t} \dd{\Omega_{t}} + \oint_{\partial V(t)} \vb{q} \left( \vb{v} \vdot \vb{\hat{n}} \right) \dd{S} & \text{Proof \ref{proof:rtv}} \label{equation:rtv}
 \end{flalign}
 
+\section{Cauchy Stress Hypothesis}
+
+something something importance for divergence theorem and converting to differential form
+
+\begin{flalign}
+&& \vb{t} &= \vb*{\sigma} \vb{\hat{n}} & \label{equation:csh_sf}
+\end{flalign}
+
 \section{Generic Scalar Conservation Laws}
 
 explain vars here, v sub omega, yadda yadda
@@ -126,6 +134,12 @@ If the conserved property is intensive, expressed per unit mass, the following c
 
 \section{Conservation of Mass}
 
+\begin{itemize}
+	\item Quantity: mass, $Q = \varrho, q = \rho$
+	\item Surface fluxes: none, $\vb*{\Phi} = \vb{0}, \vb*{\phi} = \vb{0}$
+	\item Internal sources: none, $R = 0, r = 0$
+\end{itemize}
+
 \subsection{Material Frame}
 
 \begin{flalign}
@@ -140,6 +154,12 @@ If the conserved property is intensive, expressed per unit mass, the following c
 \end{flalign}
 
 \section{Conservation of Momentum}
+
+\begin{itemize}
+	\item Quantity: momentum, $\vb{Q} = \varrho \vb{V}, \vb{q} = \rho \vb{v}$
+	\item Surface fluxes: Cauchy stress, $\vb*{\Phi} = -\vb*{\Sigma}, \vb*{\phi} = -\vb*{\sigma}$
+	\item Internal sources: body forces, $\vb{R} = \varrho \vb{B}, \vb{r} = \rho \vb{b}$
+\end{itemize}
 
 \subsection{Material Frame}
 
@@ -156,6 +176,12 @@ If the conserved property is intensive, expressed per unit mass, the following c
 
 \section{Conservation of Angular Momentum}
 
+\begin{itemize}
+	\item Quantity: angular momentum, $\vb{Q} = \vb*{\varphi} \cross \varrho \vb{V}, \vb{q} = \vb{x} \cross \rho \vb{v}$
+	\item Surface fluxes: Cauchy torque, $\vb*{\Phi} = -\vb*{\varphi} \cross \vb{\Sigma}, \vb*{\phi} = -\vb{x} \cross \vb{sigma}$
+	\item Internal sources: body torques, $\vb{R} = \vb*{\varphi} \cross \varrho \vb{B}, \vb{r} = \vb{x} \cross \rho \vb{b}$
+\end{itemize}
+
 \subsection{Material Frame}
 
 \begin{flalign}
@@ -171,36 +197,61 @@ If the conserved property is intensive, expressed per unit mass, the following c
 
 \section{Conservation of Energy}
 
+\begin{itemize}
+	\item Quantity: energy, $Q = E, q = e$
+	\item Surface fluxes: Cauchy power and heat flux, $\vb*{\Phi} = -\vb{V} \vdot \vb*{\Sigma} + \vb{Q}, \vb*{\phi} = -\vb{v} \vdot \vb*{\sigma} + \vb{q}$
+	\item Internal sources: body force power and generic energy sources, $R =  \varrho \vb{B} \vdot \vb{B}  + \varrho R, r =  \rho \vb{b} \vdot \vb{v}  + \rho r$
+\end{itemize}
+
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \rho_{0} \dv{I}{t} + \Div_{\vb{X}} \vb{Q} &= \rho_{0} \vb{R} + \vb{S} \vddot \vb{D} & \text{Proof \ref{proof:tot_coe_mf_dif}} \label{equation:tot_coe_mf_dif} \\
+	&& \rho_{0} \dv{I}{t} + \Div_{\vb{X}} \vb{Q} &= \vb{S} \vddot \vb{D} + \rho_{0} \vb{B} \vdot \vb{V} + \rho_{0} \vb{R} & \text{Proof \ref{proof:tot_coe_mf_dif}} \label{equation:tot_coe_mf_dif} \\
 \end{flalign}
 
 \subsection{Spatial Frame}
 
 \begin{flalign}
-	&& \pdv{\left( \rho e \right)}{t} + \Div{\left( \rho e \vb{v} \right)} &= \Div{\left( \vb*{\sigma} \vb{v} \right)}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Conservation form. Proof \ref{proof:coe_sf_dif_cons}} \label{equation:coe_sf_dif_cons} \\
-	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{d}  + \rho r + \rho \vb{b} \vdot \vb{b} - \Div{\vb{q}} & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
+	&& \pdv{\left( \rho e \right)}{t} + \Div{\left( \rho e \vb{v} \right)} &= \Div{\left( \vb{v} \vdot \vb*{\sigma} - \vb{q} \right)} + \rho \vb{b} \vdot \vb{v}  + \rho r & \text{Conservative form. Proof \ref{proof:coe_sf_dif_cons}} \label{equation:coe_sf_dif_cons} \\
+	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{d} - \Div{\vb{q}} + \rho \vb{b} \vdot \vb{v}  + \rho r & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
 \end{flalign}
 
 \section{Entropy Inequality}
 
+\begin{itemize}
+	\item Quantity: entropy, $Q = N, q = \eta$
+	\item Surface fluxes: entropy from heat flux, $\vb*{\Phi} = \frac{\vb{Q}}{\Theta}, \vb*{\phi} = \frac{\vb{q}}{\theta}$
+	\item Internal sources: entropy generation from energy sources, $R =  \varrho \frac{R}{\Theta}, r =  \rho \frac{r}{\theta}$
+\end{itemize}
+
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \rho_{0} \dv{N}{t} + \Div_{\vb{X}}\frac{\vb{Q}}{\Theta} &\geq \rho_{0} \frac{R}{\Theta} & \text{Proof \ref{proof:tot_ion_mf_dif}} \label{equation:tot_ion_mf_dif}
+	&& \rho_{0} \dv{N}{t} + \Div_{\vb{X}}\frac{\vb{Q}}{\Theta} - \rho_{0} \frac{R}{\Theta} &\geq 0 & \text{Proof \ref{proof:tot_ion_mf_dif}} \label{equation:ion_mf_dif}
 \end{flalign}
 
 \subsection{Spatial Frame}
 
 \begin{flalign}
-	&& \pdv{\left( \rho \eta \right)}{t} + \Div{\left( \rho \eta \vb{v} \right)} + \Div{\frac{\vb{q}}{\Theta}} - \rho r &\geq 0 & \text{Proof \ref{proof:tot_ion_sf_dif}} \label{equation:tot_ion_sf_dif} \\
+	&& \pdv{\left( \rho \eta \right)}{t} + \Div{\left( \rho \eta \vb{v} \right)} + \Div{\frac{\vb{q}}{\Theta}} - \rho \frac{r}{\theta} &\geq 0 & \text{Conservative form. Proof \ref{proof:ion_sf_dif_cons}} \label{equation:ion_sf_dif_cons} \\
+	&& \rho \left( \pdv{\eta}{t} + \Grad{\eta} \vdot \vb{v} \right) + \Div{\frac{\vb{q}}{\Theta}} - \rho \frac{r}{\theta} &\geq 0 & \text{Reduced form. Proof \ref{proof:ion_sf_dif_red}} \label{equation:ion_sf_dif_red}
 \end{flalign}
 
 \section{Advection Diffusion Reaction Equation}
+
+This is essentially a variant of the conservation of momentum. It can be applied to particles advected by a fluid, for example.
+
+\begin{itemize}
+	\item Quantity: mass, $Q = C, q = c$
+	\item Surface fluxes: diffusion, $\vb*{\Phi} = ???, \vb*{\phi} = -\vb{D} \Grad{c}$
+	\item Internal sources: reaction, $R = R, r = r$
+\end{itemize}
 
 \begin{flalign}
 	&& \pdv{c}{t} + \div{\left( \vb{v} c - \vb{D} \grad{c} \right)} &= R & \text{Proof \ref{proof:}} \label{equation:adv_dif_rea_scal} \\
 	&& \pdv{\vb{c}}{t} + \div{\left( \vb{v} \otimes \vb{c} - \mathcal{D} \vddot \grad{\vb{c}} \right)} &= R & \text{Proof \ref{proof:}} \label{equation:adv_dif_rea_vec}
 \end{flalign}
+
+\section{Advanced Formulations}
+
+e.g. curvature-dependent, hyperstress
