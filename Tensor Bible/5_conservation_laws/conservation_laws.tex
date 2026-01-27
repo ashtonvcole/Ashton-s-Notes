@@ -136,8 +136,7 @@ for applied laws, there are a million ways to express, but only including useful
 \subsection{Spatial Frame}
 
 \begin{flalign}
-	&& \dv{t} \int_{\vb{x} \in V \subseteq \Omega_{t}} \rho(\vb{x}, t) \dd{\Omega_{t}} + \int_{\vb{x} \in \partial V} \rho(\vb{x}, t) \vb{v}(\vb{x}, t) \vdot \hat{\vb{n}}(\vb{x}) \dd{(\partial  V)} &= 0 & \text{Integral form. Proof \ref{proof:com_sf_int}} \label{equation:com_sf_int} \\
-	&& \pdv{\rho}{t} + \div{\rho \vb{v}} &= 0 & \text{Proof \ref{proof:com_sf_dif}} \label{equation:com_sf_dif}
+	&& \pdv{\rho}{t} + \Div{\left( \rho \vb{v} \right)} &= 0 & \text{Conservative form. Proof \ref{proof:com_sf_dif_cons}} \label{equation:com_sf_dif_cons}
 \end{flalign}
 
 \section{Conservation of Momentum}
@@ -151,14 +150,14 @@ for applied laws, there are a million ways to express, but only including useful
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \rho_{0} \dv{V}{t} &= \Div_{\vb{X}} \vb{P} + \rho_{0} \vb{B} & \text{Proof \ref{proof:cop_mf_dif}} \label{equation:cop_mf_dif} \\
+	&& \rho_{0} \dv{V}{t} &= \Div_{\vb{X}} \vb{P} + \rho_{0} \vb{B} & \text{Proof \ref{proof:cop_mf_dif}} \label{equation:cop_mf_dif}
 \end{flalign}
 
 \subsection{Spatial Frame}
 
 \begin{flalign}
 	&& \pdv{\left( \rho \vb{v} \right)}{t} + \Div{\left( \rho \vb{v} \otimes \vb{v} \right)} &= \Div{\vb*{\sigma}} + \rho \vb{b} & \text{Conservative form. Proof \ref{proof:cop_sf_dif_cons}} \label{equation:cop_sf_dif_cons} \\
-	&& \rho \left(\pdv{\vb{v}}{t} + \left( \Grad{\vb{v}} \right) \vb{v}\right) &= \Div{\vb*{\sigma}} + \rho \vb{b} & \text{Reduced form. Proof \ref{proof:cop_sf_dif_red}} \label{equation:cop_sf_dif_red} \\
+	&& \rho \left(\pdv{\vb{v}}{t} + \left( \Grad{\vb{v}} \right) \vb{v}\right) &= \Div{\vb*{\sigma}} + \rho \vb{b} & \text{Reduced form. Proof \ref{proof:cop_sf_dif_red}} \label{equation:cop_sf_dif_red}
 \end{flalign}
 
 \section{Conservation of Angular Momentum}
@@ -172,14 +171,14 @@ for applied laws, there are a million ways to express, but only including useful
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \vb{S} &= \vb{S}^{T} & \text{Reduced form. Proof \ref{proof:col_mf_dif_red}} \label{equation:col_mf_dif_red} \\
+	&& \vb{S} &= \vb{S}^{T} & \text{Reduced form. Proof \ref{proof:col_mf_dif_red}} \label{equation:col_mf_dif_red}
 \end{flalign}
 
 \subsection{Spatial Frame}
 
 \begin{flalign}
 	&& \pdv{\left( \vb{x} \cross \rho \vb{v} \right)}{t} + \Div{\left( \vb{x} \cross \rho \vb{v} \otimes \vb{v} \right)} &= \Div{\left(\vb{x} \cross \vb*{\sigma}\right)} + \vb{x} \cross \rho \vb{b} & \text{Conservative form. Proof \ref{proof:col_sf_dif_cons}} \label{equation:col_sf_dif_cons} \\
-	&& \vb*{\sigma} &= \vb*{\sigma}^{T} & \text{Reduced form. Proof \ref{proof:col_sf_dif_red}} \label{equation:col_sf_dif_red} \\
+	&& \vb*{\sigma} &= \vb*{\sigma}^{T} & \text{Reduced form. Proof \ref{proof:col_sf_dif_red}} \label{equation:col_sf_dif_red}
 \end{flalign}
 
 \section{Conservation of Energy}
@@ -200,7 +199,8 @@ for applied laws, there are a million ways to express, but only including useful
 
 \begin{flalign}
 	&& \pdv{\left( \rho e \right)}{t} + \Div{\left( \rho e \vb{v} \right)} &= \Div{\left( \vb{v} \vdot \vb*{\sigma} - \vb{q} \right)} + \rho \vb{b} \vdot \vb{v}  + \rho r & \text{Conservative form. Proof \ref{proof:coe_sf_dif_cons}} \label{equation:coe_sf_dif_cons} \\
-	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{d} - \Div{\vb{q}} + \rho \vb{b} \vdot \vb{v}  + \rho r & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
+	&& \rho \left( \pdv{e}{t} + \Grad{e} \vdot \vb{v} \right) &= ??? - \Div{\vb{q}} + \rho \vb{b} \vdot \vb{v}  + \rho r & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red} \\
+	&& \rho \left( \pdv{i}{t} + \Grad{i} \vdot \vb{v} \right) &= \vb*{\sigma} \vddot \vb{d} - \Div{\vb{q}} + \rho r & \text{Reduced form. Proof \ref{proof:coe_sf_dif_red}} \label{equation:coe_sf_dif_red}
 \end{flalign}
 
 \section{Entropy Inequality}
