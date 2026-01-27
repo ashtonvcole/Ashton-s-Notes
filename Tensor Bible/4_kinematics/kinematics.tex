@@ -15,28 +15,22 @@ material and spatial fields
 
 derivatives of material and spatial fields
 
+integral change of variables with jacobian
+
 \section{Kinematic Variables}
 
 \begin{itemize}
-	\item $\vb{U} = \vb{U}(\vb{X}, t)$: displacement in material frame
+	\item $\vb{U}, \vb{u}$: displacement in material/spatial frames
 	\begin{itemize}
 		\item $\vb{U} := \vb*{\phi}_{t} - \vb{X}$
 	\end{itemize}
-	\item $\vb{u} = \vb{u}(\vb{x}, t)$: displacement in spatial frame
-	\begin{itemize}
-		\item $\vb{u} := \vb{U} \circ \vb*{\phi}_{t}^{-1} = \vb{x} - \vb*{\phi}_{t}^{-1}$
-	\end{itemize}
-	\item $\vb{V} = \vb{V}(\vb{X}, t)$: velocity in material frame
+	\item $\vb{V}, \vb{v}$: velocity in material/spatial frames
 	\begin{itemize}
 		\item $\vb{V} := \pdv{\vb*{\phi}}{t}$
 	\end{itemize}
-	\item $\vb{v} = \vb{v}(\vb{x}, t)$: velocity in spatial frame
+	\item $\vb{L}$: velocity gradient in spatial frame
 	\begin{itemize}
-		\item $\vb{v} := \vb{V} \circ \vb*{\phi}_{t}^{-1} = \pdv{\vb*{\phi}}{t} \circ \vb*{\phi}_{t}^{-1}$
-	\end{itemize}
-	\item $\vb{L} = \vb{L}(\vb{X}, t)$: velocity gradient in material frame???
-	\begin{itemize}
-		\item $\vb{L} := \Grad_{\vb{X}} \vb{V}$
+		\item $\vb{L} := \Grad{\vb{v}}$
 	\end{itemize}
 	\item $\vb{D} = \vb{D}(\vb{X}, t)$: symmetric component of velocity gradient in material frame???
 	\begin{itemize}

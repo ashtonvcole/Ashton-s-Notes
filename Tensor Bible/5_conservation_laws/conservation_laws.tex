@@ -25,41 +25,104 @@ entropy inequality
 
 define control volume properly, relate vt to v0, same for omega
 
-\section{Constitutive Variables}
+explain variable capitalization is just change or domain mapping, don't confuse with piola tensors
+
+\section{Continuum Mechanics Assumptions}
+
+\section{Conservation Law Variables}
+
+explain convention that $Q(\vb{X}, t) = q(\vb*{\varphi}(\vb{X}, t), t)$, also define rho not and show that it is constant??
 
 \begin{itemize}
-	\item $\rho_{0} = \rho_{0}(\vb{X})$: density in material frame
-	\item $\rho = \rho(\vb{x}, t)$: density in spatial frame
-	\item $\vb{S} = \vb{S}(\vb{X}, t)$: second Piola-Kirchoff stress tensor in material frame
+	\item $\varrho, \rho$: density in material/spatial frames
+	\item $\vb*{\Sigma}, \vb*{\sigma}$: Cauchy stress tensor in material/spatial frames
+	\item $\vb{S}$: second Piola-Kirchoff stress tensor in material frame
 	\begin{itemize}
-		\item $\vb{S} := J \vb{F}^{-1} \vb*{\sigma} \vb{F}^{-T}$
+		\item $\vb{S} := J \vb{F}^{-1} \vb*{\Sigma} \vb{F}^{-T}$
 	\end{itemize}
 	\item $\vb{P} = \vb{P}(\vb{X}, t)$: first Piola-Kirchoff stress tensor in material frame
 	\begin{itemize}
-	\item $\vb{P} := J \vb*{\sigma} \vb{F}^{-T} = \vb{F} \vb{S}$
+		\item $\vb{P} := J \vb*{\Sigma} \vb{F}^{-T} = \vb{F} \vb{S}$
 	\end{itemize}
-	\item $\vb*{\sigma} = \vb*{\sigma}(\vb{x}, t)$: Cauchy stress tensor in spatial frame
-	\item $\vb{B} = \vb{B}(\vb{X}, t)$: body force per unit mass in material frame
-	\item $\vb{b} = \vb{b}(\vb{x}, t)$: body force per unit mass in spatial frame
-	\item $E = E(\vb{X}, t)$: internal energy per unit mass in material frame
-	\item $e = e(\vb{X}, t)$: internal energy per unit mass in spatial frame
-	\item $I = I(\vb{X}, t)$: potential? energy per unit mass in material frame
+	\item $\vb{B}, \vb{b}$: body force per unit mass in material/spatial frames
+	\item $E, e$: internal energy per unit mass in material frame
+	\item $I, i$: potential? energy per unit mass in material frame
 	\item $i = i(\vb{X}, t)$: potential? energy per unit mass in spatial frame
-	\item $\vb{Q} = \vb{Q}(\vb{X}, t)$: heat flux in material frame
-	\item $\vb{q} = \vb{q}(\vb{x}, t)$: heat flux in spatial frame
-	\item $\mathbb{C} = ???$: elasticity tensor in material frame
-	\begin{itemize}
-		\item $\mathbb{C} := \pdv{\vb{S}}{E} = \pdv[2]{\hat{\Psi}}{\vb{E}}$
-	\end{itemize}
-	\item $\mathbb{c} = ???$: elasticity tensor in spatial frame
+	\item $\vb{Q}, \vb{q}$: heat flux in material/spatial frames
 \end{itemize}
+
+\section{Reynolds Transport Theorem}
+
+\section{Generic Scalar Conservation Laws}
+
+explain vars here, v sub omega, yadda yadda
+
+\subsection{Material Frame}
+
+\begin{flalign}
+	&& \dv{t} \int_{V_{0}} Q J \dd{\Omega_{0}} &= \oint_{\partial V_{0}}\vb{\Phi} \vdot \vb{\hat{N}} J \dd{S_{0}} + \int_{V_{0}} R J \dd{\Omega_{0}} & \text{Integral form. Proof \ref{proof:cos_mf_int}} \label{equation:cos_mf_int} \\
+	&& \dv{(Q J)}{t} &= - \Div_{\vb{X}} \left( \vb*{\Phi} \vdot \vb{F}^{-T} J \right) + RJ & \text{Differential form. Proof \ref{proof:cos_mf_dif}} \label{equation:cos_mf_dif}
+\end{flalign}
+
+If the conserved property is intensive, expressed per unit mass, the following conservation laws may be derived.
+
+\begin{flalign}
+	&& \int_{V_{0}} \rho_{0} \dv{\tilde{Q}}{t} \dd{\Omega_{0}} &= \oint_{\partial V_{0}}\vb{\Phi} \vdot \vb{\hat{N}} J \dd{S_{0}} + \int_{V_{0}} R J \dd{\Omega_{0}} & \text{Integral form. Proof \ref{proof:cois_mf_int}} \label{equation:cois_mf_int} \\
+	&& \rho_{0} \dv{\tilde{Q}}{t} &= - \Div_{\vb{X}} \left( \vb*{\Phi} \vdot \vb{F}^{-T} J \right) + RJ & \text{Differential form. Proof \ref{proof:cois_mf_dif}} \label{equation:cois_mf_dif}
+\end{flalign}
+
+\subsection{Spatial Frame}
+
+\begin{flalign}
+	&& \dv{t} \int_{V(t)} q \dd{V} &= - \oint_{\partial V(t)} \vb*{\phi} \vdot \vb{\hat{n}} \dd{S}+ \int_{V(t)} r \dd{V} & \text{Integral form. Proof \ref{proof:cos_sf_int}} \label{equation:cos_sf_int} \\
+	&& \pdv{q}{t} + \Div{\left( q \vb{v} \right)} &= -\Div{\vb*{\phi}} + r & \text{Differential form. Proof \ref{proof:cos_sf_dif}} \label{equation:cos_sf_dif}
+\end{flalign}
+
+If the conserved property is intensive, expressed per unit mass, the following conservation laws may be derived.
+
+\begin{flalign}
+	&& \int_{V(t)} \rho \left( \pdv{\tilde{q}}{t} + \Grad{\tilde{q}} \vdot \vb{v} \right) \dd{V} &= - \oint_{\partial V(t)} \vb*{\phi} \vdot \vb{\hat{n}} \dd{S} + \int_{V(t)} r \dd{V} & \text{Integral form. Proof \ref{proof:cois_sf_int}} \label{equation:cois_sf_int} \\
+	&& \rho \left( \pdv{\tilde{q}}{t} + \Grad{\tilde{q}} \vdot \vb{v} \right) &= -\Div{\vb*{\phi}} + r & \text{Differential form. Proof \ref{proof:cois_sf_dif}} \label{equation:cois_sf_dif}
+\end{flalign}
+
+\section{Generic Vector Conservation Laws}
+
+explain vars here, v sub omega, yadda yadda
+
+\subsection{Material Frame}
+
+\begin{flalign}
+	&& \dv{t} \int_{V_{0}} \vb{Q} J \dd{\Omega_{0}} &= \oint_{\partial V_{0}}\vb{\Phi} \vb{\hat{N}} J \dd{S_{0}} + \int_{V_{0}} \vb{R} J \dd{\Omega_{0}} & \text{Integral form. Proof \ref{proof:cov_mf_int}} \label{equation:cov_mf_int} \\
+	&& \dv{(\vb{Q} J)}{t} &= - \Div_{\vb{X}} \left( \vb*{\Phi} \vb{F}^{-T} J \right) + \vb{R} J & \text{Differential form. Proof \ref{proof:cov_mf_dif}} \label{equation:cov_mf_dif}
+\end{flalign}
+
+If the conserved property is intensive, expressed per unit mass, the following conservation laws may be derived.
+
+\begin{flalign}
+	&& \int_{V_{0}} \rho_{0} \dv{\vb{\tilde{Q}}}{t} \dd{\Omega_{0}} &= \oint_{\partial V_{0}} \vb{\Phi} \vb{\hat{N}} J \dd{S_{0}} + \int_{V_{0}} \vb{R} J \dd{\Omega_{0}} & \text{Integral form. Proof \ref{proof:coiv_mf_int}} \label{equation:coiv_mf_int} \\
+	&& \rho_{0} \dv{\vb{\tilde{Q}}}{t} &= - \Div_{\vb{X}} \left( \vb*{\Phi} \vb{F}^{-t} J \right) + \vb{R} J & \text{Differential form. Proof \ref{proof:coiv_mf_dif}} \label{equation:coiv_mf_dif}
+\end{flalign}
+
+\subsection{Spatial Frame}
+
+\begin{flalign}
+	&& \dv{t} \int_{V(t)} \vb{q} \dd{V} &= - \oint_{\partial V(t)} \vb*{\phi} \vb{\hat{n}} \dd{S} + \int_{V(t)} \vb{r} \dd{V} & \text{Integral form. Proof \ref{proof:cov_sf_int}} \label{equation:cov_sf_int} \\
+	&& \pdv{\vb{q}}{t} + \Div{\left( \vb{q} \otimes \vb{v} \right)} &= -\Div{\vb*{\phi}} + \vb{r} & \text{Differential form. Proof \ref{proof:cov_sf_dif}} \label{equation:cov_sf_dif}
+\end{flalign}
+
+If the conserved property is intensive, expressed per unit mass, the following conservation laws may be derived.
+
+\begin{flalign}
+	&& \int_{V(t)} \rho \left( \pdv{\vb{\tilde{q}}}{t} + \left( \Grad{\vb{\tilde{q}}} \right) \vb{v} \right) \dd{V} &= - \oint_{\partial V(t)} \vb*{\phi} \vb{\hat{n}} \dd{S} + \int_{V(t)} \vb{r} \dd{V} & \text{Integral form. Proof \ref{proof:coiv_sf_int}} \label{equation:coiv_sf_int} \\
+	&& \rho \left( \pdv{\vb{\tilde{q}}}{t} + \left( \Grad{\vb{\tilde{q}}} \right) \vb{v} \right) &= -\Div{\vb*{\phi}} + \vb{r} & \text{Differential form. Proof \ref{proof:coiv_sf_dif}} \label{equation:coiv_sf_dif}
+\end{flalign}
 
 \section{Conservation of Mass}
 
 \subsection{Material Frame}
 
 \begin{flalign}
-	&& \rho_{0} &= \rho \circ \phi_{t} J & \text{Proof \ref{proof:com_mf_dif}} \label{equation:com_mf_dif}
+	&& \rho_{0} &= \varrho J & \text{Proof \ref{proof:com_mf_dif}} \label{equation:com_mf_dif}
 \end{flalign}
 
 \subsection{Spatial Frame}
