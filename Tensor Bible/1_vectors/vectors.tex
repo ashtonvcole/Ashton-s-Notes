@@ -7,13 +7,106 @@ Ironically enough, this was the hardest section to write. It is easy to get lost
 
 I think that the best way to start is with vectors. Tesors are always defined relative to some kind of vector space. Scalars are so-called zeroth-order tensors, vectors are so-called first-order tensors, and any other kind of tensor can be constructed from these.
 
-\section{Vector Space}
+\section{Abstract Vector Spaces}
 
-examples of vector spaces
+\subsection{Vector Space}
 
-\section{Dual Space}
+scalar, tuples, functions
 
-\subsection{Isometric Isomorphism}
+\begin{definition}[Abelian Group]
+	An Abelian group $\{A, \cdot\}$ is a set $A$ and a binary operation $\cdot: A \times A \rightarrow A$ which satisfy the following four properties. Essentially, it generalizes the properties of addition and multiplication.
+	\begin{enumerate}
+		\item Commutativity: reversing the arguments does not change the result.
+		\begin{equation}
+			\forall a, b \in A: a \cdot b = b \cdot a
+		\end{equation}
+		\item Associativity: the order in which the operation is applied does not change the result.
+		\begin{equation}
+			\forall a, b, c \in A: a \cdot (b \cdot c) = (a \cdot b) \cdot c
+		\end{equation}
+		\item Identity element: any element operated on with the identity results in itself.
+		\begin{equation}
+			\exists i \in A: \forall a \in A: i \cdot a = a
+		\end{equation}
+		\item Inverse element: every element has a corresponding inverse which results in the identity.
+		\begin{equation}
+			\forall a \in A: \exists b \in A: a \cdot b = i
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Field]
+	A field $\{ \mathbb{F}, +, \cdot \}$ is a set $\mathbb{F}$ with an addition-like operation $+: A \times A: A$ and a multiplication-like operation $+: A \times A: A$ which satisfy the following properties.
+	\begin{enumerate}
+		\item $\{ \mathbb{F}, + \}$ form an Abelian group, with an identity $0$ and additive inverse marked as $-a$.
+		\item $\{ \mathbb{F} \setminus 0, \cdot \}$ form an Abelian group, with an identity $1$ and multiplicative inverse marked as $a^{-1}$.
+		\item Distributivity of multiplication
+		\begin{equation}
+			\forall a, b, c \in A: a \cdot (b + c) = a \cdot b + a \cdot c
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+For a field, the subtraction and division operations can also be defined.
+
+\begin{align}
+	a - b &:= a + (-b) \\
+	a / b &:= a \cdot b^{-1}
+\end{align}
+
+\begin{definition}[Vector Space]
+	A vector space $X$ over a field $\mathbb{F}$ is a system of sets and operations $\{X, \mathbb{F}, \boldsymbol{+}, +, \cdot, *\}$ which satisfy the following axioms.
+	\begin{enumerate}
+		\item $\{X, \boldsymbol{+}\}$ is an Abelian group with identity $\vb{0}$.
+		\item $\{\mathbb{F}, +, \cdot\}$ is a field.
+		\item Scalar multiplication $* : \mathbb{F} \times X \rightarrow X$ is a binary operation between the field and vector space which produces a vector, with the following properties.
+		\begin{enumerate}
+			\item Distributivity over vector addition
+			\begin{equation}
+				\forall \alpha \in \mathbb{F}, x, y \in X: \alpha * (\vb{x} \boldsymbol{+} \vb{y}) = \alpha * \vb{x} \boldsymbol{+} \alpha * \vb{y}
+			\end{equation}
+			\item Distributivity over field addition into vector addition
+			\begin{equation}
+				\forall \alpha, \beta \in \mathbb{F}, \vb{x} \in A: (\alpha + \beta) * \vb{x} = \alpha * \vb{x} \boldsymbol{+} \beta * \vb{x}
+			\end{equation}
+			\item Associativity with field multiplication into scalar multiplication
+			\begin{equation}
+				\forall \alpha, \beta \in \mathbb{F}, \vb{x} \in X: (\alpha \cdot \beta) * \vb{x} = \alpha * (\beta * \vb{x})
+			\end{equation}
+			\item Field identity is scalar multiplication identity
+			\begin{equation}
+				\forall \vb{x} \in X: 1 * \vb{x} = \vb{x}
+			\end{equation}
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+can become looser with notation??
+
+additional properties to get identity and inverse vectors
+
+\begin{itemize}
+	\item $\forall \vb{x} \in X: 0 * \vb{x} = \vb{0}$
+	\item $\forall \vb{x} \in X: (-1) * \vb{x} = -\vb{x}$
+\end{itemize}
+
+\subsection{Basis}
+
+different kinds of bases, linear independence
+
+\subsection{Metric}
+
+\subsection{Norm}
+
+metric norm back and forth
+
+\subsection{Inner Product}
+
+norm inner product back and forth
+
+\subsection{Dual Space}
+
+\subsection{Riesz Representation}
 
 Riesz representation and dealing with complex vector spaces
 
@@ -23,6 +116,8 @@ norm is also a metric
 
 \section{Vector Spaces in Continuum Mechanics}
 
+do a proper construction here
+
 construction of euclidean geometry but don't get to lost
 
 Rn is a Euclidean geometry, also cartesian coordinates
@@ -30,6 +125,22 @@ Rn is a Euclidean geometry, also cartesian coordinates
 note on how velocity
 
 also fields which are functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Getting Started}
 
