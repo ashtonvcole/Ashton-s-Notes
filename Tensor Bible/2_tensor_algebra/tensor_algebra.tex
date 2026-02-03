@@ -5,9 +5,61 @@
 
 \section{Abstract Definitions}
 
-start with linear operators, show component representation, introduce tensor product spaces with contraction operation and co/contra basis, explain how other operations follow, introduce isomorphisms between everything
+start with linear operators, show component representation, introduce tensor product spaces with contraction operation and co/contra basis  , explain how other operations follow, introduce isomorphisms between everything
 
 \subsection{Linear Operators}
+
+\begin{definition}[Linear Transformation]
+	Given two vector spaces $V, W$ over the same field $\mathbb{F}$, a map $T: V \rightarrow W$ is a linear transformation if it has the following properties.
+	\begin{enumerate}
+		\item Additive
+		\begin{equation}
+			\forall \vb{x}, \vb{y} \in V: T(\vb{x} + \vb{y}) = T(\vb{x}) + T(\vb{y})
+		\end{equation}
+		\item Homogeneous
+		\begin{equation}
+			\forall \alpha \in \mathbb{F}, \vb{x} \in V: T(\alpha \vb{x}) = \alpha T(\vb{x})
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+By convention, a linear operator's argument parentheses may be dropped: $T \vb{x} = T(\vb{x})$.
+
+Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
+
+\begin{itemize}
+	\item $V$: vector space over $\mathbb{F}$, $\dim{G} = n$, with some basis $\{ \vb{e}_{1}, \dots, \vb{e}_{n} \}$
+	\item $W$: vector space over $\mathbb{F}$, $\dim{G} = m$, with some basis $\{ \vb{f}_{1}, \dots, \vb{f}_{m} \}$
+	\item $T: V \rightarrow W$: linear transformation
+\end{itemize}
+
+Pick any vector $\vb{v} \in V$, and let $\vb{w} = T(\vb{v})$.
+
+\begin{align*}
+	w_{i} &= \vb{f}_{i}^{*} \left( T(\vb{v}) \right) \\
+	&= \vb{f}_{i}^{*} \left( T \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
+	&= \sum_{j = 1}^{n} \vb{f}_{i}^{*} \left(T( \vb{e}_{j}) \right) v^{j} \\
+	&= \sum_{j = 1}^{n} T_{ij} v^{j} \\
+	T_{ij} &= \vb{f}_{i}^{*} \left(T( \vb{e}_{j}) \right)
+\end{align*}
+
+show linear operators are a vector space L(V, W)
+
+check for upstairsing
+
+matrix, linear algebra
+
+Now, it's tempting to conclude $T = \sum_{i = 1}^{m} \sum_{j = 1}^{n} T_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically???
+
+\subsection{Dual/Adjoint Operator}
+
+\subsection{Transpose Operator}
+
+maybe do some upstairs indices here
+
+hilbert adjoint
+
+\subsection{Bilinear and Multilinear Operators}
 
 \subsection{Tensor Product Space}
 
