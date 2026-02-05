@@ -9,37 +9,59 @@ I think that the best place to start is with vectors. Tensors are always defined
 
 \section{Vector Analysis}
 
-\subsection{Vector Space}
+\subsection{Generalizing Addition and Multiplication}
 
-scalar, tuples, functions dimension
-
-\begin{definition}[Abelian Group]
-	An Abelian group $\{A, \cdot\}$ is a set $A$ and a binary operation $\cdot: A \times A \rightarrow A$ which satisfy the following four properties. Essentially, it generalizes the properties of addition and multiplication.
+\begin{definition}[Group]
+	A group $\{ G, \cdot \}$ is a is a set $G$ and a binary operation $\cdot: G \times G \rightarrow G$ which satisfy the following three properties.
 	\begin{enumerate}
-		\item Commutativity: reversing the arguments does not change the result.
-		\begin{equation}
-			\forall a, b \in A: a \cdot b = b \cdot a
-		\end{equation}
 		\item Associativity: the order in which the operation is applied does not change the result.
 		\begin{equation}
-			\forall a, b, c \in A: a \cdot (b \cdot c) = (a \cdot b) \cdot c
+			\forall a, b, c \in G: a \cdot (b \cdot c) = (a \cdot b) \cdot c
 		\end{equation}
 		\item Identity element: any element operated on with the identity results in itself.
 		\begin{equation}
-			\exists i \in A: \forall a \in A: i \cdot a = a
+			\exists i \in G: \forall a \in A: i \cdot a = a \cdot i = a
 		\end{equation}
 		\item Inverse element: every element has a corresponding inverse which results in the identity.
 		\begin{equation}
-			\forall a \in A: \exists b \in A: a \cdot b = i
+			\forall a \in G: \exists b \in A: a \cdot b = i
 		\end{equation}
 	\end{enumerate}
 \end{definition}
 
+\begin{definition}[Action]
+An action $\circ: G \times X \rightarrow X$ is a binary operation between a group $\{ G, \cdot \}$ with identity $e$ and a set $X$ which satisfies the following properties.
+\begin{enumerate}
+	\item Left identity
+	\begin{equation}
+		\forall x \in X: e \circ x = x
+	\end{equation}
+	\item Left compatibility
+	\begin{equation}
+		\forall g, h \in G, x \in X: g \circ (h \circ x) = (g \cdot h) \circ x
+	\end{equation}
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Abelian Group]
+	An Abelian group $\{A, \cdot\}$ is a group which also has commutativity: reversing the arguments does not change the result.
+	\begin{equation}
+		\forall a, b \in A: a \cdot b = b \cdot a
+	\end{equation}
+\end{definition}
+
+Essentially, groups and Abelian groups generalize addition and multiplication past real numbers. In the same spirit, the following two notation conventions are often used for such operations.
+
+\begin{itemize}
+	\item Additive group: An addition-like group, almost always Abelian, with $+$ for the operation, $0$ for the identity, and $-a$ for the inverse.
+	\item Multiplicative group: A multiplication-like group, less often Abelian, with $\times$, $\cdot$, or $*$ for the operation, $1$ for the identity, and $a^{-1}$ for the inverse.
+\end{itemize}
+
 \begin{definition}[Field]
-	A field $\{ \mathbb{F}, +, \cdot \}$ is a set $\mathbb{F}$ with an addition-like operation $+: A \times A \rightarrow A$ and a multiplication-like operation $+: A \times A \rightarrow A$ which satisfy the following properties.
+	A field $\{ \mathbb{F}, +, \cdot \}$ is a set $\mathbb{F}$ with an addition-like operation $+: A \times A \rightarrow A$ and a multiplication-like operation $\cdot: A \times A \rightarrow A$ which satisfy the following properties.
 	\begin{enumerate}
-		\item $\{ \mathbb{F}, + \}$ form an Abelian group, with an identity $0$ and additive inverse marked as $-a$.
-		\item $\{ \mathbb{F} \setminus 0, \cdot \}$ form an Abelian group, with an identity $1$ and multiplicative inverse marked as $a^{-1}$.
+		\item $\{ \mathbb{F}, + \}$ form an additive Abelian group, with an identity $0$ and additive inverse marked as $-a$.
+		\item $\{ \mathbb{F} \setminus 0, \cdot \}$ form a multiplicative Abelian group, with an identity $1$ and multiplicative inverse marked as $a^{-1}$.
 		\item Distributivity of multiplication
 		\begin{equation}
 			\forall a, b, c \in A: a \cdot (b + c) = a \cdot b + a \cdot c
@@ -54,28 +76,24 @@ For a field, the subtraction and division operations can also be defined.
 	a / b &:= a \cdot b^{-1}
 \end{align}
 
+\subsection{Vector Space}
+
+scalar, tuples, functions dimension
+
 \begin{definition}[Vector Space]
-	A vector space $X$ over a field $\mathbb{F}$ is a system of sets and operations $\{X, \mathbb{F}, \boldsymbol{+}, +, \cdot, *\}$ which satisfy the following axioms.
+	A vector space $V$ over a field $\mathbb{F}$ is a system of sets and operations $\{V, \mathbb{F}, \boldsymbol{+}, +, \cdot, *\}$ which satisfy the following axioms.
 	\begin{enumerate}
-		\item $\{X, \boldsymbol{+}\}$ is an Abelian group with identity $\vb{0}$.
+		\item $\{V, \boldsymbol{+}\}$ is an Abelian group with identity $\vb{0}$.
 		\item $\{\mathbb{F}, +, \cdot\}$ is a field.
-		\item Scalar multiplication $* : \mathbb{F} \times X \rightarrow X$ is a binary operation between the field and vector space which produces a vector, with the following properties.
+		\item Scalar multiplication $* : \mathbb{F} \times V \rightarrow V$ is an action of the multiplicative group of the field $\{ \mathbb{F} \setminus 0 \}$ on the vector space with the following additional properties.
 		\begin{enumerate}
 			\item Distributivity over vector addition
 			\begin{equation}
-				\forall \alpha \in \mathbb{F}, x, y \in X: \alpha * (\vb{x} \boldsymbol{+} \vb{y}) = \alpha * \vb{x} \boldsymbol{+} \alpha * \vb{y}
+				\forall \alpha \in \mathbb{F}, \vb{u}, \vb{v} \in V: \alpha * (\vb{u} \boldsymbol{+} \vb{v}) = \alpha * \vb{u} \boldsymbol{+} \alpha * \vb{v}
 			\end{equation}
 			\item Distributivity over field addition into vector addition
 			\begin{equation}
-				\forall \alpha, \beta \in \mathbb{F}, \vb{x} \in X: (\alpha + \beta) * \vb{x} = \alpha * \vb{x} \boldsymbol{+} \beta * \vb{x}
-			\end{equation}
-			\item Associativity with field multiplication into scalar multiplication
-			\begin{equation}
-				\forall \alpha, \beta \in \mathbb{F}, \vb{x} \in X: (\alpha \cdot \beta) * \vb{x} = \alpha * (\beta * \vb{x})
-			\end{equation}
-			\item Field identity is scalar multiplication identity
-			\begin{equation}
-				\forall \vb{x} \in X: 1 * \vb{x} = \vb{x}
+				\forall \alpha, \beta \in \mathbb{F}, \vb{v} \in V: (\alpha + \beta) * \vb{v} = \alpha * \vb{v} \boldsymbol{+} \beta * \vb{v}
 			\end{equation}
 		\end{enumerate}
 	\end{enumerate}
@@ -86,8 +104,8 @@ In practice, the notation used is looser. Vector and scalar addition share the s
 Scalar multiplication can be used to relate the inverse and identity elements of the field and vector space.
 
 \begin{flalign}
-	&& \forall \vb{x} \in X: 0 * \vb{x} &= \vb{0} & \text{Proof \ref{proof:smult_zero}} \label{equation:smult_zero} \\
-	&& \forall \vb{x} \in X: (-1) * \vb{x} &= -\vb{x} & \text{Proof \ref{proof:smult_inverse}} \label{equation:smult_inverse}
+	&& \forall \vb{v} \in V: 0 * \vb{v} &= \vb{0} & \text{Proof \ref{proof:smult_zero}} \label{equation:smult_zero} \\
+	&& \forall \vb{v} \in V: (-1) * \vb{v} &= -\vb{v} & \text{Proof \ref{proof:smult_inverse}} \label{equation:smult_inverse}
 \end{flalign}
 
 \subsection{Basis}
@@ -118,22 +136,22 @@ algebraic, topological
 	\end{enumerate}
 \end{definition}
 
-A vector space with an associated metric is called a metric space.
+A set with an associated metric is called a metric space.
 
 \begin{definition}[Norm]
-	A norm $\norm{\cdot}: X \rightarrow [0, \infty)$ is a function that generalizes magnitude of vectors in a vector space $X$ over $\mathbb{F}$ by satisfying the following properties.
+	A norm $\norm{\cdot}: V \rightarrow [0, \infty)$ is a function that generalizes magnitude of vectors in a vector space $X$ over a real or complex field $\mathbb{F} \subseteq \mathbb{C}$ by satisfying the following properties.
 	\begin{enumerate}
 		\item Positive-definiteness
 		\begin{equation}
-			\forall \vb{x} \in X: \norm{\vb{x}} = 0 \iff \vb{x} = \vb{0}
+			\forall \vb{v} \in V: \norm{\vb{v}} = 0 \iff \vb{v} = \vb{0}
 		\end{equation}
 		\item Absolute homogeneity, i.e. scaling property
 		\begin{equation}
-			\forall \alpha \in \mathbb{F}, \vb{x} \in X: \norm{\alpha \vb{x}} = \abs{\alpha} \norm{\vb{x}}
+			\forall \alpha \in \mathbb{F}, \vb{v} \in V: \norm{\alpha \vb{v}} = \abs{\alpha} \norm{\vb{v}}
 		\end{equation}
 		\item Triangle inequality
 		\begin{equation}
-			\forall \vb{x}, \vb{y} \in X: \norm{\vb{x} + \vb{y}} \leq \norm{\vb{x}} + \norm{\vb{y}}
+			\forall \vb{u}, \vb{v} \in V: \norm{\vb{u} + \vb{v}} \leq \norm{\vb{u}} + \norm{\vb{v}}
 		\end{equation}
 	\end{enumerate}
 \end{definition}
@@ -141,13 +159,13 @@ A vector space with an associated metric is called a metric space.
 A vector space with a norm is called a normed linear space. It is also a metric space using the induced metric.
 
 \begin{flalign}
-	&& d(\vb{x}, \vb{y}) &= \norm{\vb{x} - \vb{y}} & \text{Proof \ref{proof:nls_is_ms}} \label{equation:nls_is_ms}
+	&& d(\vb{u}, \vb{v}) &= \norm{\vb{u} - \vb{v}} & \text{Proof \ref{proof:nls_is_ms}} \label{equation:nls_is_ms}
 \end{flalign}
 
 All norms are equivalent in finite-dimensional spaces. See Proof \ref{proof:norm_equivalence}.
 
 \begin{definition}
-	An inner product $(\cdot, \cdot): X \times X \rightarrow \mathbb{F}$ is a function that generalizes the similarity of vectors in a vector space $X$ over $\mathbb{F}$ by satisfying the following properties.
+	An inner product $(\cdot, \cdot): V \times V \rightarrow \mathbb{F}$ is a function that generalizes the similarity of vectors in a vector space $X$ over a real or complex field $\mathbb{F} \subseteq \mathbb{C}$ by satisfying the following properties.
 	\begin{enumerate}
 		\item Positive-definiteness
 		\begin{equation}
@@ -182,7 +200,7 @@ A vector space with an inner product is called an inner product space. It is als
 	 && \norm{\vb{x}} &= \sqrt{(\vb{x}, \vb{x})} & \text{Proof \ref{proof:ips_is_nls}} \label{equation:ips_is_nls}
 \end{flalign}
 
-An inner product also allows for an abstract notion of angle.
+An inner product also allows for an abstract notion of angle, inspired by geometry.
 
 \begin{equation}
 	\cos(\theta) = \frac{(\vb{x}, \vb{y})}{\norm{\vb{x}} \norm{\vb{y}}}
@@ -191,6 +209,41 @@ An inner product also allows for an abstract notion of angle.
 \subsection{Riesz Representation}
 
 Riesz representation and dealing with complex vector spaces, dual basis cobasis link, also compare components
+
+\section{Affine and Euclidean Spaces}
+
+\begin{definition}[Affine Space]
+	An affine space $\{ G, V, +, \oplus \}$ is an additive group $\{ G, + \}$, a vector space $V$, and an action $\oplus: A \times \overrightarrow{A} \rightarrow \overrightarrow{A}$ which satisfies the following properties. This creates a scalar addition analogue to scalar multiplication.
+	\begin{enumerate}
+		\item The action is
+		\begin{enumerate}
+			\item Free
+			\begin{equation}
+				\forall \vb{v}\in V: g \oplus \vb{v} = \vb{v} \implies g = 0
+			\end{equation}
+			\item Transitive
+			\begin{equation}
+				\forall \vb{u}, \vb{v} \in V: \exists g \in G: g \oplus \vb{u} = \vb{v}
+			\end{equation}
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+The definition above also implies the following properties
+
+\begin{flalign}
+	&& \forall g \in G, g \oplus \vb{0} &= \vb{0} & \text{Right identity. Proof \ref{proof:aff_ri}} \label{equation:aff_ri} \\
+	&& \forall g \in G,  \vb{u}, \vb{v} \in V: a \oplus (\vb{u} + \vb{v}) &= (a \oplus \vb{u}) + \vb{v} & \text{Right compatibility. Proof \ref{proof:aff_ass}} \label{equation:aff_ass} \\
+	&& a &= b & \text{Bijection. Proof \ref{proof:aff_bij}} \label{equation:aff_bij}
+\end{flalign}
+
+\begin{definition}[Euclidean Point Space]
+	The Euclidean point space
+\end{definition}
+
+\begin{definition}[Euclidean Vector Space]
+	content...
+\end{definition}
 
 \section{Vector Spaces in Continuum Mechanics}
 
