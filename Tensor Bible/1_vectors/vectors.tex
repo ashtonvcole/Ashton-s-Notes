@@ -9,53 +9,129 @@ I think that the best place to start is with vectors. Tensors are always defined
 
 \section{Vector Analysis}
 
-\subsection{Generalizing Addition and Multiplication}
+bla bla bla operations past numbers which are addition-like or multiplication like
 
-\begin{definition}[Group]
-	A group $\{ G, \cdot \}$ is a is a set $G$ and a binary operation $\cdot: G \times G \rightarrow G$ which satisfy the following three properties.
+\subsection{Group-Like Structures}
+
+Groups generalize binary operations with addition- or multiplication-like properties.
+
+\begin{definition}[Monoid]
+	A monoid $\{ M, \cdot \}$ is a set $M$ with a binary operation $\cdot: G \times G \rightarrow G$ which satisfies the following properties.
 	\begin{enumerate}
-		\item Associativity: the order in which the operation is applied does not change the result.
+		\item Associativity
 		\begin{equation}
-			\forall a, b, c \in G: a \cdot (b \cdot c) = (a \cdot b) \cdot c
+			\forall m, n, p \in M: m \cdot (n \cdot p) = (m \cdot n) \cdot p
 		\end{equation}
-		\item Identity element: any element operated on with the identity results in itself.
+		\item Identity element
 		\begin{equation}
-			\exists i \in G: \forall a \in A: i \cdot a = a \cdot i = a
-		\end{equation}
-		\item Inverse element: every element has a corresponding inverse which results in the identity.
-		\begin{equation}
-			\forall a \in G: \exists b \in A: a \cdot b = i
+			\exists i \in M: \forall m \in M: i \cdot m = m \cdot i = m
 		\end{equation}
 	\end{enumerate}
 \end{definition}
 
-\begin{definition}[Action]
-An action $\circ: G \times X \rightarrow X$ is a binary operation between a group $\{ G, \cdot \}$ with identity $e$ and a set $X$ which satisfies the following properties.
-\begin{enumerate}
-	\item Left identity
+\begin{definition}[Group]
+	A group $\{ G, \cdot \}$ is a monoid which also has inverse elements.
 	\begin{equation}
-		\forall x \in X: e \circ x = x
+		\forall a \in G: \exists b \in A: a \cdot b = i
 	\end{equation}
-	\item Left compatibility
-	\begin{equation}
-		\forall g, h \in G, x \in X: g \circ (h \circ x) = (g \cdot h) \circ x
-	\end{equation}
-\end{enumerate}
 \end{definition}
 
 \begin{definition}[Abelian Group]
-	An Abelian group $\{A, \cdot\}$ is a group which also has commutativity: reversing the arguments does not change the result.
+	An Abelian group $\{A, \cdot\}$ is a group which also has commutativity
 	\begin{equation}
 		\forall a, b \in A: a \cdot b = b \cdot a
 	\end{equation}
 \end{definition}
 
-Essentially, groups and Abelian groups generalize addition and multiplication past real numbers. In the same spirit, the following two notation conventions are often used for such operations.
+In the same spirit of generalizing addition and multiplication, the following two notation conventions are often used for such operations.
 
 \begin{itemize}
-	\item Additive group: An addition-like group, almost always Abelian, with $+$ for the operation, $0$ for the identity, and $-a$ for the inverse.
-	\item Multiplicative group: A multiplication-like group, less often Abelian, with $\times$, $\cdot$, or $*$ for the operation, $1$ for the identity, and $a^{-1}$ for the inverse.
+	\item Additive: An addition-like operation, almost always an Abelian group, with $+$ for the operation, $0$ for the identity, and $-a$ for any inverses.
+	\item Multiplicative: A multiplication-like operation, less often an Abelian group, with $\times$, $\cdot$, or $*$ for the operation, $1$ for the identity, and $a^{-1}$ for any inverses.
 \end{itemize}
+
+\subsection{Group Actions}
+
+Actions generalize operations between arbitrary sets and monoids. For example, displacements are an action on positions. Compositions of displacements form an additive group. If one composition of displacements equals another composition, then they should get you to the same final destination.
+
+\begin{definition}[Left Action]
+	A left action $\circ: M \times X \rightarrow X$ is a binary operation between a monoid $\{ M, \cdot \}$ with identity $i$ and a set $X$ which satisfies the following properties.
+	\begin{enumerate}
+		\item Left identity
+		\begin{equation}
+			\forall x \in X: i \circ x = x
+		\end{equation}
+		\item Left compatibility
+		\begin{equation}
+			\forall m, n \in M, x \in X: m \circ (n \circ x) = (m \cdot n) \circ x
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Right Action]
+	A right action $\circ: X \times M \rightarrow X$ is a binary operation between a set $X$ and a monoid $\{ M, \cdot \}$ with identity $i$ which satisfies the following properties.
+	\begin{enumerate}
+		\item Right identity
+		\begin{equation}
+			\forall x \in X: x \circ i = x
+		\end{equation}
+		\item Right compatibility
+		\begin{equation}
+			\forall x \in X, m, n \in G: (x \circ m) \circ n = x \circ (m \cdot n)
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+\subsection{Ring-Like Structures}
+
+\begin{definition}[Ring]
+	A ring $\{ R, +, \cdot \}$ is a set $R$ with an additive Abelian group $\{ R, + \}$ and a multiplicative monoid $\{ R, \cdot \}$ which satisfy the following properties.
+	\begin{enumerate}
+		\item Left distributivity
+		\begin{equation}
+			\forall r, s, t \in R: r \cdot (s + t) = r \cdot s + r \cdot t
+		\end{equation}
+		\item Right distributivity
+		\begin{equation}
+			\forall r, s, t \in R: (r + s) \cdot t = r \cdot t + s \cdot t
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+\subsection{Module-Like Structures}
+
+Modules generalize vector spaces.
+
+\begin{definition}[Left Module]
+	A left module $A$ over a ring $R$ is a system of sets and operations $\{ A, R, \oplus, +, \cdot, * \}$ which satisfy the following properties.
+	\begin{enumerate}
+		\item $\{ A, \oplus \}$ is an additive Abelian group.
+		\item $\{ R, +, \cdot \}$ is a ring.
+		\item Scalar multiplication $*: R \times A \rightarrow A$ is a left action of the multiplicative monoid $\{ R, \cdot \}$ of the ring on $A$ which satisfies the following properties.
+		\begin{enumerate}
+			\item Distributivity over $A$'s addition
+			\begin{equation}
+				\forall r \in R, a, b \in A: r * (a \oplus b) = r * a \oplus r * b
+			\end{equation}
+			\item Distributivity over $R$'s addition into $A$'s addition
+			\begin{equation}
+				\forall r, s \in R, a \in A: (r + s) * a = r * a \oplus s * a
+			\end{equation}
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Vector Space]
+	A vector space $V$ over a field $\mathbb{F}$ is a left module with sets and operations $\{V, \mathbb{F}, \oplus, +, \cdot, *\}$ which is defined over a field.
+\end{definition}
+
+\subsection{Generalizing Addition and Multiplication}
+
+
+
+
+
+
 
 \begin{definition}[Field]
 	A field $\{ \mathbb{F}, +, \cdot \}$ is a set $\mathbb{F}$ with an addition-like operation $+: A \times A \rightarrow A$ and a multiplication-like operation $\cdot: A \times A \rightarrow A$ which satisfy the following properties.
@@ -80,24 +156,7 @@ For a field, the subtraction and division operations can also be defined.
 
 scalar, tuples, functions dimension
 
-\begin{definition}[Vector Space]
-	A vector space $V$ over a field $\mathbb{F}$ is a system of sets and operations $\{V, \mathbb{F}, \boldsymbol{+}, +, \cdot, *\}$ which satisfy the following axioms.
-	\begin{enumerate}
-		\item $\{V, \boldsymbol{+}\}$ is an Abelian group with identity $\vb{0}$.
-		\item $\{\mathbb{F}, +, \cdot\}$ is a field.
-		\item Scalar multiplication $* : \mathbb{F} \times V \rightarrow V$ is an action of the multiplicative group of the field $\{ \mathbb{F} \setminus 0 \}$ on the vector space with the following additional properties.
-		\begin{enumerate}
-			\item Distributivity over vector addition
-			\begin{equation}
-				\forall \alpha \in \mathbb{F}, \vb{u}, \vb{v} \in V: \alpha * (\vb{u} \boldsymbol{+} \vb{v}) = \alpha * \vb{u} \boldsymbol{+} \alpha * \vb{v}
-			\end{equation}
-			\item Distributivity over field addition into vector addition
-			\begin{equation}
-				\forall \alpha, \beta \in \mathbb{F}, \vb{v} \in V: (\alpha + \beta) * \vb{v} = \alpha * \vb{v} \boldsymbol{+} \beta * \vb{v}
-			\end{equation}
-		\end{enumerate}
-	\end{enumerate}
-\end{definition}
+
 
 In practice, the notation used is looser. Vector and scalar addition share the same symbol. Field and scalar multiplication symbols are usually dropped. The operations can be inferred from context.
 
@@ -213,7 +272,7 @@ Riesz representation and dealing with complex vector spaces, dual basis cobasis 
 \section{Affine and Euclidean Spaces}
 
 \begin{definition}[Affine Space]
-	An affine space $\{ G, V, +, \oplus \}$ is an additive group $\{ G, + \}$, a vector space $V$, and an action $\oplus: A \times \overrightarrow{A} \rightarrow \overrightarrow{A}$ which satisfies the following properties. This creates a scalar addition analogue to scalar multiplication.
+	An affine space $\{ G, V, +, \oplus \}$ is an additive group $\{ G, + \}$, a vector space $V$ and a right action $\oplus: A \times \overrightarrow{A} \rightarrow A$ on the additive group $\{ V, + \}$ which satisfies the following properties. This creates a scalar addition analogue to scalar multiplication.
 	\begin{enumerate}
 		\item The action is
 		\begin{enumerate}
@@ -234,6 +293,7 @@ The definition above also implies the following properties
 \begin{flalign}
 	&& \forall g \in G, g \oplus \vb{0} &= \vb{0} & \text{Right identity. Proof \ref{proof:aff_ri}} \label{equation:aff_ri} \\
 	&& \forall g \in G,  \vb{u}, \vb{v} \in V: a \oplus (\vb{u} + \vb{v}) &= (a \oplus \vb{u}) + \vb{v} & \text{Right compatibility. Proof \ref{proof:aff_ass}} \label{equation:aff_ass} \\
+	&& \forall \vb{u}, \vb{v} \in V: \exists! g \in G: g \oplus \vb{u} &= \vb{v} & \text{Bijection. Proof \ref{proof:aff_bij}} \label{equation:aff_bij} \\
 	&& a &= b & \text{Bijection. Proof \ref{proof:aff_bij}} \label{equation:aff_bij}
 \end{flalign}
 
