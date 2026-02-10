@@ -46,13 +46,19 @@ Groups generalize binary operations with addition- or multiplication-like proper
 In the same spirit of generalizing addition and multiplication, the following two notation conventions are often used for such operations.
 
 \begin{itemize}
-	\item Additive: An addition-like operation, almost always an Abelian group, with $+$ for the operation, $0$ for the identity, and $-a$ for any inverses.
-	\item Multiplicative: A multiplication-like operation, less often an Abelian group, with $\times$, $\cdot$, or $*$ for the operation, $1$ for the identity, and $a^{-1}$ for any inverses.
+	\item Additive: An addition-like operation, almost always an Abelian group, with $+$ for the operation, $0$ for the identity, and $-a$ for any inverses. For a group, subtraction can be defined.
+	\begin{equation}
+		a - b := a + (-b)
+	\end{equation}
+	\item Multiplicative: A multiplication-like operation, less often an Abelian group, with $\times$, $\cdot$, or $*$ for the operation, $1$ for the identity, and $a^{-1}$ for any inverses. For a group, division can be defined.
+	\begin{equation}
+		a / b := a \cdot b^{-1}
+	\end{equation}
 \end{itemize}
 
 \subsection{Group Actions}
 
-Actions generalize operations between arbitrary sets and monoids. For example, displacements are an action on positions. Compositions of displacements form an additive group. If one composition of displacements equals another composition, then they should get you to the same final destination.
+Actions generalize operations between arbitrary sets and monoids. For example, displacements are an action on positions. Compositions of displacements form an additive Abelian group using ``tip to tail'' addition. If one composition of displacements equals another composition, then they should get you to the same final destination.
 
 \begin{definition}[Left Action]
 	A left action $\circ: M \times X \rightarrow X$ is a binary operation between a monoid $\{ M, \cdot \}$ with identity $i$ and a set $X$ which satisfies the following properties.
@@ -84,6 +90,8 @@ Actions generalize operations between arbitrary sets and monoids. For example, d
 
 \subsection{Ring-Like Structures}
 
+Rings generalize cases where there is both an addition- and multiplication-like operation. Multiplication may or may not be invertible, but if it is, cannot inlcude the additive identity 0. See Proof \ref{proof:div_by_zero}.
+
 \begin{definition}[Ring]
 	A ring $\{ R, +, \cdot \}$ is a set $R$ with an additive Abelian group $\{ R, + \}$ and a multiplicative monoid $\{ R, \cdot \}$ which satisfy the following properties.
 	\begin{enumerate}
@@ -96,6 +104,14 @@ Actions generalize operations between arbitrary sets and monoids. For example, d
 			\forall r, s, t \in R: (r + s) \cdot t = r \cdot t + s \cdot t
 		\end{equation}
 	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Commutative Ring]
+	A commutative ring $\{ R, +, \cdot \}$ is a ring where $\{ R, \cdot \}$ is commutative.
+\end{definition}
+
+\begin{definition}[Field]
+	A field $\{ \mathbb{F}, +, \cdot \}$ is a ring where $\{ \mathbb{F} \setminus 0, \cdot \}$ is a multiplicative group.
 \end{definition}
 
 \subsection{Module-Like Structures}
@@ -125,47 +141,79 @@ Modules generalize vector spaces.
 	A vector space $V$ over a field $\mathbb{F}$ is a left module with sets and operations $\{V, \mathbb{F}, \oplus, +, \cdot, *\}$ which is defined over a field.
 \end{definition}
 
-\subsection{Generalizing Addition and Multiplication}
-
-
-
-
-
-
-
-\begin{definition}[Field]
-	A field $\{ \mathbb{F}, +, \cdot \}$ is a set $\mathbb{F}$ with an addition-like operation $+: A \times A \rightarrow A$ and a multiplication-like operation $\cdot: A \times A \rightarrow A$ which satisfy the following properties.
-	\begin{enumerate}
-		\item $\{ \mathbb{F}, + \}$ form an additive Abelian group, with an identity $0$ and additive inverse marked as $-a$.
-		\item $\{ \mathbb{F} \setminus 0, \cdot \}$ form a multiplicative Abelian group, with an identity $1$ and multiplicative inverse marked as $a^{-1}$.
-		\item Distributivity of multiplication
-		\begin{equation}
-			\forall a, b, c \in A: a \cdot (b + c) = a \cdot b + a \cdot c
-		\end{equation}
-	\end{enumerate}
-\end{definition}
-
-For a field, the subtraction and division operations can also be defined.
-
-\begin{align}
-	a - b &:= a + (-b) \\
-	a / b &:= a \cdot b^{-1}
-\end{align}
-
-\subsection{Vector Space}
-
-scalar, tuples, functions dimension
-
-
-
-In practice, the notation used is looser. Vector and scalar addition share the same symbol. Field and scalar multiplication symbols are usually dropped. The operations can be inferred from context.
-
-Scalar multiplication can be used to relate the inverse and identity elements of the field and vector space.
+Further, scalar multiplication can be used to relate the inverse and identity elements of the field and vector space.
 
 \begin{flalign}
 	&& \forall \vb{v} \in V: 0 * \vb{v} &= \vb{0} & \text{Proof \ref{proof:smult_zero}} \label{equation:smult_zero} \\
 	&& \forall \vb{v} \in V: (-1) * \vb{v} &= -\vb{v} & \text{Proof \ref{proof:smult_inverse}} \label{equation:smult_inverse}
 \end{flalign}
+
+In practice, the notation used is looser. Vector and scalar addition share the same symbol. Field and scalar multiplication symbols are usually dropped. The operations can be inferred from context.
+
+\begin{definition}[Affine Space]
+	An affine space $\{ X, V, +, \oplus \}$ is a set $X$, vector space $V$ over a field $\mathbb{F}$, and a right action $\oplus: X \times V \rightarrow X$ of the additive group $\{ V, + \}$ which satisfies the following properties.
+	\begin{enumerate}
+		\item The action is
+		\begin{enumerate}
+			\item Free
+			\begin{equation}
+				\forall \vb{v}\in V: x \oplus \vb{v} = x \implies \vb{v} = \vb{0}
+			\end{equation}
+			\item Transitive
+			\begin{equation}
+				\forall x, y \in X: \exists \vb{v} \in V: x \oplus \vb{v} = y
+			\end{equation}
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+This generalizes spaces with no inherent reference point, such as a Euclidean space or time. Geometric locations and dates can be considered in a relative sense. Assigning an origin or calendar is arbitrary, after all. Elements in $X$ are called points and vectors in $V$ are called translations or free vectors.
+
+The definition above also implies the following properties.
+
+\begin{flalign}
+	&& \forall x, y \in X: \exists! \vb{v} \in V: x \oplus \vb{v} &= y & \text{Bijection  for fixed $x$. Proof \ref{proof:aff_bij_x}} \label{equation:aff_bij_x} \\
+	&& \forall \vb{v} \in V, y \in X: \exists! x \in X: x \oplus \vb{v} &= y & \text{Bijection for fixed $\vb{v}$. Proof \ref{proof:aff_bij_v}} \label{equation:aff_bij_v}
+\end{flalign}
+
+Since these operations are invertible, both point-vector $\ominus: X \times V \rightarrow X$ and point-point $--: X \times X \rightarrow V$ subtraction operations are well-defined (Proof \ref{proof:aff_sub}).
+
+\begin{equation}
+	a \oplus (b -- a) = b
+\end{equation}
+
+As with vector spaces, distinguishing these operations with special symbols is done for clarity. In practice, simple addition and subtraction are used.
+
+This operation also satisfies the following properties, called Weyl's axioms.
+
+\begin{flalign}
+	&& \forall x \in X, \vb{v} \in V: \exists! y \in x: y -- x &= \vb{v} & \text{Proof \ref{proof:aff_w1}} \label{equation:aff_w1} \\
+	&& \forall x, y, z \in X: (c -- b) + (b -- a) &= c -- a & \text{Proof \ref{proof:aff_w2}} \label{equation:aff_w2}
+\end{flalign}
+
+Furthermore, the parallelogram property is satisfied.
+
+\begin{equation}
+	\forall w, x, y, x \in X: b -- a = d -- c \equiv c -- a = d -- b
+\end{equation}
+
+Finally, any vector space is an affine space over itself (Proof \ref{proof:vec_self_aff}). This means that any element of $V$ can be considered as a point or a vector. Importantly, this formalizes that notion of a reference point being arbitrary. Given a reference point $o \in A$, an isomorphism $\iota_{o}: X \leftrightarrow V$ can be constructed between $A$ and $V$.
+
+\begin{equation}
+	\iota_{o}(x) = x \ominus o
+\end{equation}
+
+\begin{definition}[Affine Subspace]
+	An affine subspace $W \subseteq X$ of an affine space $\{ X, V, +, \oplus \}$ is a set $W$ for which there exists some $w \in W$ such that generated vectors $\overrightarrow{W} = \{ x \ominus w: x \in W \}$ is a linear subspace of V.
+\end{definition}
+
+It folllows that the choice of $w$ is arbitrary, and all subspaces can be generated from linear subspaces $U \subseteq V$ as follows.
+
+\begin{equation}
+	x + U := \{ x + \vb{u}: \vb{u} \in U \}
+\end{equation}
+
+The linear subspace $U$ can be considered the affine subspace's direction, and two subspaces that share the same or subsidiary directions $T \subseteq U$ are considered parallel. The above properties imply Playfair's axiom: for any point $x \in X$ and direction $U \subseteq V$ there is a unique affine subspace of direction $U$ (Proof \ref{proof:playfair}).
 
 \subsection{Basis}
 
@@ -269,33 +317,7 @@ An inner product also allows for an abstract notion of angle, inspired by geomet
 
 Riesz representation and dealing with complex vector spaces, dual basis cobasis link, also compare components
 
-\section{Affine and Euclidean Spaces}
-
-\begin{definition}[Affine Space]
-	An affine space $\{ G, V, +, \oplus \}$ is an additive group $\{ G, + \}$, a vector space $V$ and a right action $\oplus: A \times \overrightarrow{A} \rightarrow A$ on the additive group $\{ V, + \}$ which satisfies the following properties. This creates a scalar addition analogue to scalar multiplication.
-	\begin{enumerate}
-		\item The action is
-		\begin{enumerate}
-			\item Free
-			\begin{equation}
-				\forall \vb{v}\in V: g \oplus \vb{v} = \vb{v} \implies g = 0
-			\end{equation}
-			\item Transitive
-			\begin{equation}
-				\forall \vb{u}, \vb{v} \in V: \exists g \in G: g \oplus \vb{u} = \vb{v}
-			\end{equation}
-		\end{enumerate}
-	\end{enumerate}
-\end{definition}
-
-The definition above also implies the following properties
-
-\begin{flalign}
-	&& \forall g \in G, g \oplus \vb{0} &= \vb{0} & \text{Right identity. Proof \ref{proof:aff_ri}} \label{equation:aff_ri} \\
-	&& \forall g \in G,  \vb{u}, \vb{v} \in V: a \oplus (\vb{u} + \vb{v}) &= (a \oplus \vb{u}) + \vb{v} & \text{Right compatibility. Proof \ref{proof:aff_ass}} \label{equation:aff_ass} \\
-	&& \forall \vb{u}, \vb{v} \in V: \exists! g \in G: g \oplus \vb{u} &= \vb{v} & \text{Bijection. Proof \ref{proof:aff_bij}} \label{equation:aff_bij} \\
-	&& a &= b & \text{Bijection. Proof \ref{proof:aff_bij}} \label{equation:aff_bij}
-\end{flalign}
+\section{Geometric Spaces}
 
 \begin{definition}[Euclidean Point Space]
 	The Euclidean point space
