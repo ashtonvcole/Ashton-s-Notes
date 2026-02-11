@@ -138,7 +138,7 @@ Modules generalize vector spaces.
 \end{definition}
 
 \begin{definition}[Vector Space]
-	A vector space $V$ over a field $\mathbb{F}$ is a left module with sets and operations $\{V, \mathbb{F}, \oplus, +, \cdot, *\}$ which is defined over a field.
+	A vector space $V$ over a field $\mathbb{F}$ is a left module with sets and operations $\{V, \mathbb{F}, \oplus, +, \cdot, *\}$ where the ring is restricted to a field. Scalar multiplication is then a left action of the multiplicative group $\{ \mathbb{F} \setminus 0, \cdot \}$.
 \end{definition}
 
 Further, scalar multiplication can be used to relate the inverse and identity elements of the field and vector space.
@@ -182,8 +182,6 @@ Since these operations are invertible, both point-vector $\ominus: X \times V \r
 	a \oplus (b -- a) = b
 \end{equation}
 
-As with vector spaces, distinguishing these operations with special symbols is done for clarity. In practice, simple addition and subtraction are used.
-
 This operation also satisfies the following properties, called Weyl's axioms.
 
 \begin{flalign}
@@ -214,6 +212,8 @@ It folllows that the choice of $w$ is arbitrary, and all subspaces can be genera
 \end{equation}
 
 The linear subspace $U$ can be considered the affine subspace's direction, and two subspaces that share the same or subsidiary directions $T \subseteq U$ are considered parallel. The above properties imply Playfair's axiom: for any point $x \in X$ and direction $U \subseteq V$ there is a unique affine subspace of direction $U$ (Proof \ref{proof:playfair}).
+
+As with vector spaces, distinguishing these operations with special symbols is done for clarity. In practice, simple addition and subtraction are used, and such notation will be used moving forwards.
 
 \subsection{Basis}
 
