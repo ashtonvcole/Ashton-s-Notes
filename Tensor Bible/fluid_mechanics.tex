@@ -40,3 +40,14 @@ diffusive wave equations
 bernoulli
 
 groundwater darcy flow
+
+\section{Acoustic-Gravity Wave Equations}
+
+\begin{flalign}
+	&& \rho \pdv{\vb{u}}{t} + \Grad{p} &= 0 & \text{Proof \ref{proof:}} \label{equation:} \\
+	&& \frac{1}{K} \pdv{p}{t} + \Div{\vb{u}} &= 0 \\
+	p &= \rho g \eta \\
+	\pdv{\eta}{t} &= \vb{u} \vdot \vb{\hat{n}} \\
+	\vb{u} \vdot \vb{\hat{n}} &= - \pdv{b}{t} \\
+	\vb{u} \vdot \vb{\hat{n}} &= \frac{1}{Z} p
+\end{flalign}
