@@ -486,33 +486,27 @@ Starting from the basis representation of a vector, the following relationships 
 	\end{enumerate}
 \end{definition}
 
-In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is anti-linear. By convention, a linear operator's argument parentheses may be dropped: $T \vb{x} = T(\vb{x})$.
+In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is anti-linear. By convention, a linear operator's argument parentheses may be dropped: $A \vb{x} = A(\vb{x})$.
 
-Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
+The set of linear operators between vector spaces $V$ and $W$ is $L(V, W)$ (Proof \ref{proof:LVW}). It is a vector space over the same field. Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
 
 \begin{itemize}
 	\item $V$: vector space over $\mathbb{F}$, $\dim{F} = n$, with some basis $\{ \vb{e}_{1}, \dots, \vb{e}_{n} \}$
 	\item $W$: vector space over $\mathbb{F}$, $\dim{G} = m$, with some basis $\{ \vb{f}_{1}, \dots, \vb{f}_{m} \}$
-	\item $T: V \rightarrow W$: linear transformation
+	\item $A: V \rightarrow W$: linear transformation
 \end{itemize}
 
-Pick any vector $\vb{v} \in V$, and let $\vb{w} = T(\vb{v})$.
+Pick any vector $\vb{v} \in V$, and let $\vb{w} = A(\vb{v})$.
 
 \begin{align*}
-	w_{i} &= \vb{f}^{i*} \left( T(\vb{v}) \right) \\
-	&= \vb{f}^{i*} \left( T \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
-	&= \sum_{j = 1}^{n} \vb{f}^{i*} \left(T( \vb{e}_{j}) \right) v^{j} \\
-	&= \sum_{j = 1}^{n} T_{ij} v^{j} \\
-	T_{ij} &= \vb{f}^{i*} \left(T( \vb{e}_{j}) \right)
+	w_{i} &= \vb{f}^{i*} \left( A(\vb{v}) \right) \\
+	&= \vb{f}^{i*} \left( A \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
+	&= \sum_{j = 1}^{n} \vb{f}^{i*} \left(A( \vb{e}_{j}) \right) v^{j} \\
+	&= \sum_{j = 1}^{n} A_{ij} v^{j} \\
+	T_{ij} &= \vb{f}^{i*} \left(A( \vb{e}_{j}) \right)
 \end{align*}
 
-show linear operators are a vector space L(V, W)
-
-check for upstairsing
-
-matrix, linear algebra
-
-Now, it's tempting to conclude $T = \sum_{i = 1}^{m} \sum_{j = 1}^{n} T_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically???
+Now, it's tempting to conclude $A = \sum_{i = 1}^{m} \sum_{j = 1}^{n} A_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis vectors $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically that's not a well-defined object. This motivates dyads, but for now it is more proper to define basis operators $E_{ij}$ where $\vb{f}^{k*} E_{ij} \vb{e}_{\ell} = \delta_{ki} \delta_{j\ell}$.
 
 \begin{definition}[Adjoint]
 	The adjoint $A^{*}: Y^{*} \rightarrow X^{*}$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
@@ -544,12 +538,16 @@ Similar to how vectors are not necessarily distinguished from their dual mapping
 
 Additional notations include $A^{\#}$, $A^{\dagger}$ for quantum mechanics, and $A^{T}$ for real-valued finite-dimensional linear algebra. The matrix transpose is a special case of the adjoint. For complex-valued finite-dimensional linear algebra, the Hermitian adjoint is the conjugate transpose.
 
-TODO TODO COMPONENT FORM
+\begin{flalign}
+	&& (A')_{ij} &= \overline{A_{ij}} & \text{Proof \ref{proof:adjoint_comp}} \label{equation:adjoint_comp}
+\end{flalign}
 
 \section{Tensor Product Spaces}
 
 over underline otimes, 4th order transpose?
 
 \subsection{Action of a Tensor Product}
+
+over 1 vector space
 
 \subsection{Einstein Index Notation}
