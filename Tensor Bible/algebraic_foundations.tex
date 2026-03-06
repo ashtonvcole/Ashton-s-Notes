@@ -430,6 +430,18 @@ This is also a vector space over $\mathbb{F}$ (Proof \ref{proof:top_dual_is_vs})
 
 Note that $R$ is antilinear and $\vb{u}$ is in the second argument so that $R \vb{u}$ is linear, not bilinear. This nuance is sometimes lost for real vector spaces. In practice, the notation changes. In linear algebra, $R \vb{u} = \vb{u}^{*}$. In quantum mechanics, $R \ket{u} = \bra{u}$.
 
+A nice visual correspondence can be established between the evaluation map and inner product.
+
+\begin{equation}
+	\langle \vb{v}, R \vb{u} \rangle_{H, H'} = (\vb{v}, \vb{u})_{H}
+\end{equation}
+
+Especially for real-valued Hilbert spaces, where complex conjugation can be ignored, $R\vb{u}$ is not distinguished from $\vb{u}$ and notation blurs. What adds to the confusion is that angle brackets are also used for the inner product. Consider this example for $L^{2}(\Omega)$ over $\mathbb{R}$.
+
+\begin{equation*}
+	\langle f, g \rangle_{(L^{2}(\Omega))', L^{2}(\Omega)} = \langle g, f \rangle_{L^{2}(\Omega), (L^{2}(\Omega))'} = (f, g)_{L^{2}(\Omega)} = (g, f)_{L^{2}(\Omega)} = \int_{\Omega} f(x) g(x) \dd{x}
+\end{equation*}
+
 \begin{definition}[Cobasis]
 	A cobasis $\{ \vb{e}^{i} \}_{i \in I}$ of a given basis $\{ \vb{e}_{i} \}_{i \in I}$ of an inner product space $V$ is a bais which satisfies the following property.
 	\begin{equation}
@@ -437,25 +449,102 @@ Note that $R$ is antilinear and $\vb{u}$ is in the second argument so that $R \v
 	\end{equation}
 \end{definition}
 
-The dual basis for $H'$ corresponds directly to a cobasis for $H$ (Proof \ref{proof:cobasis}).
+The dual basis for $H'$ corresponds directly to the cobasis for $H$ (Proof \ref{proof:cobasis}).
 
 \begin{equation}
 	(\vb{e}^{i})^{*} = \vb{e}^{i*}
 \end{equation}
 
-\section{Adjoint and Transpose}
+Now any vector or functional can be written in two ways.
 
-\begin{definition}[Transpose]
-	content...
+\begin{align}
+	\vb{v} &= \sum_{i = 1}^{N} v^{i} \vb{e}_{i} = \sum_{i = 1}^{N} v_{i} \vb{e}^{i} \\
+	\vb{v}^{*} = f &= \sum_{i = 1}^{N} f^{i} \vb{e}_{i}^{*} = \sum_{i = 1}^{N} f_{i} \vb{e}^{i*}
+\end{align}
+
+Starting from the basis representation of a vector, the following relationships apply between the components.
+
+\begin{flalign}
+	&& v_{i} &= \sum_{j = 1}^{N} v_{j} (\vb{e}_{j}, \vb{e}_{i})_{H} & \text{Proof \ref{proof:cobasis_component}} \label{equation:} \\
+	&& f^{i} &= \overline{v^{i}} & \text{Proof \ref{proof:}} \label{equation:}\\
+	&& f_{i} &= \sum_{j = 1}^{N} \overline{v_{j} (\vb{e}_{j}, \vb{e}_{i})_{H}} = \overline{v_{i}} & \text{Proof \ref{proof:}} \label{equation:}
+\end{flalign}
+
+\section{Linear Operators}
+
+\begin{definition}[Linear Transformation]
+	A linear transformation $T: V \rightarrow W$ is a map between two vector spaces $V, W$ over $\mathbb{F}$ which satisfies the following properties.
+	\begin{enumerate}
+		\item Additive
+		\begin{equation}
+			\forall \vb{u}, \vb{v} \in V: T(\vb{u} + \vb{v}) = T(\vb{u}) + T(\vb{v})
+		\end{equation}
+		\item Homogeneous
+		\begin{equation}
+			\forall \alpha \in \mathbb{F}, \vb{v} \in V: T(\alpha \vb{v}) = \alpha T(\vb{v})
+		\end{equation}
+	\end{enumerate}
 \end{definition}
+
+In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is anti-linear. By convention, a linear operator's argument parentheses may be dropped: $T \vb{x} = T(\vb{x})$.
+
+Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
+
+\begin{itemize}
+	\item $V$: vector space over $\mathbb{F}$, $\dim{F} = n$, with some basis $\{ \vb{e}_{1}, \dots, \vb{e}_{n} \}$
+	\item $W$: vector space over $\mathbb{F}$, $\dim{G} = m$, with some basis $\{ \vb{f}_{1}, \dots, \vb{f}_{m} \}$
+	\item $T: V \rightarrow W$: linear transformation
+\end{itemize}
+
+Pick any vector $\vb{v} \in V$, and let $\vb{w} = T(\vb{v})$.
+
+\begin{align*}
+	w_{i} &= \vb{f}^{i*} \left( T(\vb{v}) \right) \\
+	&= \vb{f}^{i*} \left( T \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
+	&= \sum_{j = 1}^{n} \vb{f}^{i*} \left(T( \vb{e}_{j}) \right) v^{j} \\
+	&= \sum_{j = 1}^{n} T_{ij} v^{j} \\
+	T_{ij} &= \vb{f}^{i*} \left(T( \vb{e}_{j}) \right)
+\end{align*}
+
+show linear operators are a vector space L(V, W)
+
+check for upstairsing
+
+matrix, linear algebra
+
+Now, it's tempting to conclude $T = \sum_{i = 1}^{m} \sum_{j = 1}^{n} T_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically???
 
 \begin{definition}[Adjoint]
-content...
+	The adjoint $A^{*}: Y^{*} \rightarrow X^{*}$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
+	\begin{equation}
+		A^{*} f = f \circ A
+	\end{equation}
 \end{definition}
 
-\begin{definition}[Hilbert Adjoint]
-content...
+An equivalent definition uses the evaluation map.
+
+\begin{equation}
+	\langle A^{*} f, g \rangle_{X^{*}, X} = \langle f, A g \rangle_{Y^{*}, Y}
+\end{equation}
+
+\begin{definition}[Hermitian Adjoint]
+	The Hermitian adjoint $A': Y \rightarrow X$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
+	\begin{equation}
+		A' = R_{X}^{-1} \circ A^{*} \circ R_{Y}
+	\end{equation}
 \end{definition}
+
+An equivalent definition uses the inner product.
+
+\begin{equation}
+	(A' \vb{u}, \vb{v})_{X} = (\vb{u}, A \vb{v})_{Y}
+\end{equation}
+
+Similar to how vectors are not necessarily distinguished from their dual mapping, the Hermitian adjoint is not necessarily distinguished from the adjoint. Context is key.
+
+Additional notations include $A^{\#}$, $A^{\dagger}$ for quantum mechanics, and $A^{T}$ for real-valued finite-dimensional linear algebra. The matrix transpose is a special case of the adjoint. For complex-valued finite-dimensional linear algebra, the Hermitian adjoint is the conjugate transpose.
+
+TODO TODO COMPONENT FORM
 
 \section{Tensor Product Spaces}
 
