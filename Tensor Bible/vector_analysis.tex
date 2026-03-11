@@ -1,5 +1,5 @@
-\chapter{Algebraic Foundations}
-\label{chapter:Algebraic-Foundations}
+\chapter{Vector Analysis}
+\label{chapter:Vector-Analysis}
 
 %&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
 
@@ -156,6 +156,15 @@ The set of functions $V^{X}$ mapping from an arbitrary set $X$ to a vector space
 \begin{definition}[Linear Subspace]
 	A linear subspace $U \subset V$ of a vector space $V$ over $\mathbb{F}$ is a subset which is also a vector space using $V$'s operations. This means that it is closed with respect to vector addition and scalar multiplication.
 \end{definition}
+
+\begin{definition}[Conjugate Space]
+	The conjugate space $\overline{V}$ of a vector space $V$ over a field $\mathbb{F}$ is the same vector space, except that the scalar multiplication used is the complex conjugate of the one used for $V$.
+	\begin{equation}
+		\alpha \overline{*} \vb{v} = \overline{\alpha} * \vb{v}
+	\end{equation}
+\end{definition}
+
+The conjugate space is sometimes used to manage linearity and anti-linearity of mathematical constructions. It should be used very carefully.
 
 Affine spaces generalize spaces with no inherent reference point. For example consider Euclidean space or time. There is no inherent coordinate system or time axis to the universe. Assigning a coordinate origin, calendar system, or time zone is arbitrary. However, once this is done, the affine space can be represented with a vector space.
 
@@ -412,7 +421,7 @@ The topological dual $V'$ of a topological vector space $V$ over $\mathbb{F}$ is
 
 This is also a vector space over $\mathbb{F}$ (Proof \ref{proof:top_dual_is_vs}). It can be proven that $V^{*} = V'$ if and only if $V$ is finite-dimensional.
 
-\section{Riesz Representation and Cobasis}
+\section{Riesz Representation and Hilbert Space Bases}
 
 \begin{theorem}[Riesz Representation Theorem]
 	Given a Hilbert space $H$ over $\mathbb{F}$, every continuous linear functional can be uniquely represented by an inner product.
@@ -455,7 +464,7 @@ The dual basis for $H'$ corresponds directly to the cobasis for $H$ (Proof \ref{
 	(\vb{e}^{i})^{*} = \vb{e}^{i*}
 \end{equation}
 
-Now any vector or functional can be written in two ways.
+Now any vector has four different representations.
 
 \begin{align}
 	\vb{v} &= \sum_{i = 1}^{N} v^{i} \vb{e}_{i} = \sum_{i = 1}^{N} v_{i} \vb{e}^{i} \\
@@ -470,84 +479,12 @@ Starting from the basis representation of a vector, the following relationships 
 	&& f_{i} &= \sum_{j = 1}^{N} \overline{v_{j} (\vb{e}_{j}, \vb{e}_{i})_{H}} = \overline{v_{i}} & \text{Proof \ref{proof:}} \label{equation:}
 \end{flalign}
 
-\section{Linear Operators}
-
-\begin{definition}[Linear Transformation]
-	A linear transformation $T: V \rightarrow W$ is a map between two vector spaces $V, W$ over $\mathbb{F}$ which satisfies the following properties.
-	\begin{enumerate}
-		\item Additive
-		\begin{equation}
-			\forall \vb{u}, \vb{v} \in V: T(\vb{u} + \vb{v}) = T(\vb{u}) + T(\vb{v})
-		\end{equation}
-		\item Homogeneous
-		\begin{equation}
-			\forall \alpha \in \mathbb{F}, \vb{v} \in V: T(\alpha \vb{v}) = \alpha T(\vb{v})
-		\end{equation}
-	\end{enumerate}
+\begin{definition}[Orthonormal Basis]
+	An orthonormal basis $\{ \vb{\hat{e}}_{i} \}_{i \in I}$ is a bais which is its own cobasis.
 \end{definition}
 
-In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is anti-linear. By convention, a linear operator's argument parentheses may be dropped: $A \vb{x} = A(\vb{x})$.
-
-The set of linear operators between vector spaces $V$ and $W$ is $L(V, W)$ (Proof \ref{proof:LVW}). It is a vector space over the same field. Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
-
-\begin{itemize}
-	\item $V$: vector space over $\mathbb{F}$, $\dim{F} = n$, with some basis $\{ \vb{e}_{1}, \dots, \vb{e}_{n} \}$
-	\item $W$: vector space over $\mathbb{F}$, $\dim{G} = m$, with some basis $\{ \vb{f}_{1}, \dots, \vb{f}_{m} \}$
-	\item $A: V \rightarrow W$: linear transformation
-\end{itemize}
-
-Pick any vector $\vb{v} \in V$, and let $\vb{w} = A(\vb{v})$.
-
-\begin{align*}
-	w_{i} &= \vb{f}^{i*} \left( A(\vb{v}) \right) \\
-	&= \vb{f}^{i*} \left( A \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
-	&= \sum_{j = 1}^{n} \vb{f}^{i*} \left(A( \vb{e}_{j}) \right) v^{j} \\
-	&= \sum_{j = 1}^{n} A_{ij} v^{j} \\
-	T_{ij} &= \vb{f}^{i*} \left(A( \vb{e}_{j}) \right)
-\end{align*}
-
-Now, it's tempting to conclude $A = \sum_{i = 1}^{m} \sum_{j = 1}^{n} A_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis vectors $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically that's not a well-defined object. This motivates dyads, but for now it is more proper to define basis operators $E_{ij}$ where $\vb{f}^{k*} E_{ij} \vb{e}_{\ell} = \delta_{ki} \delta_{j\ell}$.
-
-\begin{definition}[Adjoint]
-	The adjoint $A^{*}: Y^{*} \rightarrow X^{*}$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
-	\begin{equation}
-		A^{*} f = f \circ A
-	\end{equation}
-\end{definition}
-
-An equivalent definition uses the evaluation map.
+When using an orthonormal basis, the superscript subscript distinction is often dropped.
 
 \begin{equation}
-	\langle A^{*} f, g \rangle_{X^{*}, X} = \langle f, A g \rangle_{Y^{*}, Y}
+	\vb{v} = \sum_{i = 1}^{N} v_{i} \vb{\hat{e}}_{i}
 \end{equation}
-
-\begin{definition}[Hermitian Adjoint]
-	The Hermitian adjoint $A': Y \rightarrow X$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
-	\begin{equation}
-		A' = R_{X}^{-1} \circ A^{*} \circ R_{Y}
-	\end{equation}
-\end{definition}
-
-An equivalent definition uses the inner product.
-
-\begin{equation}
-	(A' \vb{u}, \vb{v})_{X} = (\vb{u}, A \vb{v})_{Y}
-\end{equation}
-
-Similar to how vectors are not necessarily distinguished from their dual mapping, the Hermitian adjoint is not necessarily distinguished from the adjoint. Context is key.
-
-Additional notations include $A^{\#}$, $A^{\dagger}$ for quantum mechanics, and $A^{T}$ for real-valued finite-dimensional linear algebra. The matrix transpose is a special case of the adjoint. For complex-valued finite-dimensional linear algebra, the Hermitian adjoint is the conjugate transpose.
-
-\begin{flalign}
-	&& (A')_{ij} &= \overline{A_{ij}} & \text{Proof \ref{proof:adjoint_comp}} \label{equation:adjoint_comp}
-\end{flalign}
-
-\section{Tensor Product Spaces}
-
-over underline otimes, 4th order transpose?
-
-\subsection{Action of a Tensor Product}
-
-over 1 vector space
-
-\subsection{Einstein Index Notation}

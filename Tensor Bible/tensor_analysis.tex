@@ -1,0 +1,98 @@
+\chapter{Tensor Analysis}
+\label{chapter:Tensor-Analysis}
+
+%&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
+
+\section{Linear Operators}
+
+\begin{definition}[Linear Transformation]
+	A linear transformation $T: V \rightarrow W$ is a map between two vector spaces $V, W$ over $\mathbb{F}$ which satisfies the following properties.
+	\begin{enumerate}
+		\item Additive
+		\begin{equation}
+			\forall \vb{u}, \vb{v} \in V: T(\vb{u} + \vb{v}) = T(\vb{u}) + T(\vb{v})
+		\end{equation}
+		\item Homogeneous
+		\begin{equation}
+			\forall \alpha \in \mathbb{F}, \vb{v} \in V: T(\alpha \vb{v}) = \alpha T(\vb{v})
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is anti-linear. By convention, a linear operator's argument parentheses may be dropped: $A \vb{x} = A(\vb{x})$.
+
+The set of linear operators between vector spaces $V$ and $W$ is a vector space $L(V, W)$ over the same field (Proof \ref{proof:LVW}). Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
+
+\begin{itemize}
+	\item $V$: vector space over $\mathbb{F}$, $\dim{F} = n$, with some basis $\{ \vb{e}_{1}, \dots, \vb{e}_{n} \}$
+	\item $W$: vector space over $\mathbb{F}$, $\dim{G} = m$, with some basis $\{ \vb{f}_{1}, \dots, \vb{f}_{m} \}$
+	\item $A: V \rightarrow W$: linear transformation
+\end{itemize}
+
+Pick any vector $\vb{v} \in V$, and let $\vb{w} = A(\vb{v})$.
+
+\begin{align*}
+	w_{i} &= \vb{f}^{i*} \left( A(\vb{v}) \right) \\
+	&= \vb{f}^{i*} \left( A \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
+	&= \sum_{j = 1}^{n} \vb{f}^{i*} \left(A( \vb{e}_{j}) \right) v^{j} \\
+	&= \sum_{j = 1}^{n} A_{ij} v^{j} \\
+	T_{ij} &= \vb{f}^{i*} \left(A( \vb{e}_{j}) \right)
+\end{align*}
+
+Now, it's tempting to conclude $A = \sum_{i = 1}^{m} \sum_{j = 1}^{n} A_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis vectors $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically that's not a well-defined object. This motivates dyads, but for now it is more proper to define basis operators $E_{ij}$ where $\vb{f}^{k*} E_{ij} \vb{e}_{\ell} = \delta_{ki} \delta_{j\ell}$.
+
+\begin{definition}[Adjoint]
+	The adjoint $A^{*}: Y^{*} \rightarrow X^{*}$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
+	\begin{equation}
+		A^{*} f = f \circ A
+	\end{equation}
+\end{definition}
+
+An equivalent definition uses the evaluation map.
+
+\begin{equation}
+	\langle A^{*} f, x \rangle_{X^{*}, X} = \langle f, A x \rangle_{Y^{*}, Y}
+\end{equation}
+
+\begin{definition}[Hermitian Adjoint]
+	The Hermitian adjoint $A^{\dagger}: Y \rightarrow X$ of a linear operator $A: X \rightarrow Y$ is a linear map with the following definition.
+	\begin{equation}
+		A^{\dagger} = R_{X}^{-1} \circ A^{*} \circ R_{Y}
+	\end{equation}
+\end{definition}
+
+An equivalent definition uses the inner product.
+
+\begin{equation}
+	(A^{\dagger} \vb{u}, \vb{v})_{X} = (\vb{u}, A \vb{v})_{Y}
+\end{equation}
+
+Similar to how vectors are not necessarily distinguished from their dual mapping, the Hermitian adjoint is not necessarily distinguished from the adjoint. Context is key.
+
+Additional notations include $A^{\#}$, $A'$, and $A^{T}$ for real-valued finite-dimensional linear algebra. The matrix transpose is a special case of the adjoint. For complex-valued finite-dimensional linear algebra, the Hermitian adjoint is the conjugate transpose.
+
+\begin{flalign}
+	&& (A^{\dagger})_{ij} &= \overline{A_{ij}} & \text{Proof \ref{proof:adjoint_comp}} \label{equation:adjoint_comp}
+\end{flalign}
+
+\section{Tensor Product Spaces}
+
+over underline otimes, 4th order transpose?
+
+\section{Actions of Tensor Products}
+
+over 1 vector space
+
+\section{Tensor Produts of a Hilbert Space}
+
+\section{Tensors, Linear Maps, and Bilinear Forms}
+
+\section{Metric Tensor}
+
+\section{Einstein Index Notation}
+
+\section{Derivatives}
+
+frechet/gateaux/functional
+
+show is member of tensor product space involving dual, leads to derivatives being done in cobasis
