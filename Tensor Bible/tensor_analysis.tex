@@ -3,25 +3,35 @@
 
 %&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
 
+explain core idea of multilinear maps
+
+outline the chapter
+
 \section{Linear Operators}
 
+explain why we start here
+
 \begin{definition}[Linear Transformation]
-	A linear transformation $T: V \rightarrow W$ is a map between two vector spaces $V, W$ over $\mathbb{F}$ which satisfies the following properties.
+	A linear transformation $A: V \rightarrow W$ is a map between two vector spaces $V, W$ over $\mathbb{F}$ which satisfies the following properties.
 	\begin{enumerate}
 		\item Additive
 		\begin{equation}
-			\forall \vb{u}, \vb{v} \in V: T(\vb{u} + \vb{v}) = T(\vb{u}) + T(\vb{v})
+			\forall \vb{u}, \vb{v} \in V: A(\vb{u} + \vb{v}) = A(\vb{u}) + A(\vb{v})
 		\end{equation}
 		\item Homogeneous
 		\begin{equation}
-			\forall \alpha \in \mathbb{F}, \vb{v} \in V: T(\alpha \vb{v}) = \alpha T(\vb{v})
+			\forall \alpha \in \mathbb{F}, \vb{v} \in V: A(\alpha \vb{v}) = \alpha A(\vb{v})
 		\end{equation}
 	\end{enumerate}
 \end{definition}
 
-In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is anti-linear. By convention, a linear operator's argument parentheses may be dropped: $A \vb{x} = A(\vb{x})$.
+In the complex case, if $A(\alpha \vb{v}) = \overline{\alpha} A(\vb{v})$, then $A$ is an anti-linear transformation. By convention, a linear operator's argument parentheses may be dropped: $A \vb{x} = A(\vb{x})$.
 
 The set of linear operators between vector spaces $V$ and $W$ is a vector space $L(V, W)$ over the same field (Proof \ref{proof:LVW}). Given a finite-dimensional domain and range, a linear transformation can be represented with components with respect to a basis, similar to a vector or covector. This means that once bases have been chosen, linear transformations can be computed purely with components.
+
+something something linear algebra
+
+maybe move this to an appendix?
 
 \begin{itemize}
 	\item $V$: vector space over $\mathbb{F}$, $\dim{F} = n$, with some basis $\{ \vb{e}_{1}, \dots, \vb{e}_{n} \}$
@@ -32,11 +42,12 @@ The set of linear operators between vector spaces $V$ and $W$ is a vector space 
 Pick any vector $\vb{v} \in V$, and let $\vb{w} = A(\vb{v})$.
 
 \begin{align*}
-	w_{i} &= \vb{f}^{i*} \left( A(\vb{v}) \right) \\
+	w^{i} &= \vb{f}^{i*} \left( \vb{w} \right) \\
+	&= \vb{f}^{i*} \left( A(\vb{v}) \right) \\
 	&= \vb{f}^{i*} \left( A \left( \sum_{j = 1}^{n} v^{j} \vb{e}_{j} \right) \right) \\
 	&= \sum_{j = 1}^{n} \vb{f}^{i*} \left(A( \vb{e}_{j}) \right) v^{j} \\
 	&= \sum_{j = 1}^{n} A_{ij} v^{j} \\
-	T_{ij} &= \vb{f}^{i*} \left(A( \vb{e}_{j}) \right)
+	A_{ij} &= \vb{f}^{i*} \left(A( \vb{e}_{j}) \right)
 \end{align*}
 
 Now, it's tempting to conclude $A = \sum_{i = 1}^{m} \sum_{j = 1}^{n} A_{ij} \vb{f}_{i} \vb{e}_{j}^{*}$, and that linear operators from $V$ to $W$ have some basis vectors $\vb{f}_{i} \vb{e}_{j}^{*}$, but technically that's not a well-defined object. This motivates dyads, but for now it is more proper to define basis operators $E_{ij}$ where $\vb{f}^{k*} E_{ij} \vb{e}_{\ell} = \delta_{ki} \delta_{j\ell}$.
@@ -67,9 +78,9 @@ An equivalent definition uses the inner product.
 	(A^{\dagger} \vb{u}, \vb{v})_{X} = (\vb{u}, A \vb{v})_{Y}
 \end{equation}
 
-Similar to how vectors are not necessarily distinguished from their dual mapping, the Hermitian adjoint is not necessarily distinguished from the adjoint. Context is key.
+Similar to how vectors are not necessarily distinguished from their dual mapping, the Hermitian adjoint is not necessarily distinguished from the adjoint. Context is key. Additional notations include $A^{\#}$, $A'$, and $A^{T}$.
 
-Additional notations include $A^{\#}$, $A'$, and $A^{T}$ for real-valued finite-dimensional linear algebra. The matrix transpose is a special case of the adjoint. For complex-valued finite-dimensional linear algebra, the Hermitian adjoint is the conjugate transpose.
+The matrix transpose is a special case of the adjoint. For complex-valued finite-dimensional linear algebra, the Hermitian adjoint is the conjugate transpose.
 
 \begin{flalign}
 	&& (A^{\dagger})_{ij} &= \overline{A_{ij}} & \text{Proof \ref{proof:adjoint_comp}} \label{equation:adjoint_comp}
@@ -77,22 +88,193 @@ Additional notations include $A^{\#}$, $A'$, and $A^{T}$ for real-valued finite-
 
 \section{Tensor Product Spaces}
 
-over underline otimes, 4th order transpose?
+The idea of a tensor product is to create a compound object from two vector spaces that is itself bilinear in its componets. The construction as a quotient space is roundabout, but is construed specifically to give that property.
 
-\section{Actions of Tensor Products}
+draw connection between bilinearity and linear maps upfront
 
-over 1 vector space
+\begin{definition}[Cartesian Product Space]
+	The Cartesian product space $V \times W$ of vector spaces $V$ and $W$ over the same field $\mathbb{F}$ is itself a vector space over $\mathbb{F}$, formed with all possible pairs from $V$ and $W$ as its basis.
+	\begin{equation}
+		V \times W = \Span \{ (\vb{v}, \vb{w}) : \vb{v} \in V, \vb{w} \in W \}
+	\end{equation}
+\end{definition}
 
-\section{Tensor Produts of a Hilbert Space}
+This vector space is not very useful because every unique combination of $(\vb{v}, \vb{w})$ is an independent basis vector. Any linear combinations of pairs are irreducible, as seen below.
 
-\section{Tensors, Linear Maps, and Bilinear Forms}
+\begin{align*}
+	(\vb{u}, \vb{w}) + (\vb{v}, \vb{w}) &\neq (\vb{u} + \vb{v}, \vb{w}) \\
+	\alpha (\vb{v}, \vb{w}) &\neq (\alpha \vb{v}, \vb{w}) \neq (\vb{v}, \alpha \vb{w})
+\end{align*}
 
-\section{Metric Tensor}
+\begin{definition}[Tensor Product Space]
+	The tensor product space $V \otimes W$ of vector spaces $V$ and $W$ over the same field $\mathbb{F}$ is the quotient space $(V \times W) / R$, where $R \subset V \times W$ is a linear subspace generated from the span of the following kinds of elements, generated for all $\vb{u}, \vb{v} \in V, \vb{w}, \vb{x} \in W, \alpha \in \mathbb{F}$.
+	\begin{itemize}
+		\item $(\vb{u} + \vb{v}, \vb{w}) - (\vb{u}, \vb{w}) - (\vb{v}, \vb{w})$
+		\item $(\vb{v}, \vb{w} + \vb{x}) - (\vb{v}, \vb{w}) - (\vb{v}, \vb{x})$
+		\item $(\alpha \vb{v}, \vb{w}) - \alpha (\vb{v}, \vb{w})$
+		\item $(\vb{v}, \alpha \vb{w}) - \alpha (\vb{v}, \vb{w})$
+	\end{itemize}
+\end{definition}
 
-\section{Einstein Index Notation}
+The definition is arcane, so it helps to walk through the meaning of a quotient space. First, $R$ generates an equivalence relation that gives the exact bilinearity properties desired.
 
-\section{Derivatives}
+\begin{equation}
+	\forall \vb{a}, \vb{b} \in V \times W: \vb{a} \sim \vb{b} \iff \vb{a} - \vb{b} \in R
+\end{equation}
 
-frechet/gateaux/functional
+\begin{itemize}
+	\item $(\vb{u} + \vb{v}, \vb{w}) \sim (\vb{u}, \vb{w}) + (\vb{v}, \vb{w})$
+	\item $(\vb{v}, \vb{w} + \vb{x}) \sim (\vb{v}, \vb{w}) + (\vb{v}, \vb{x})$
+	\item $(\alpha \vb{v}, \vb{w}) \sim \alpha (\vb{v}, \vb{w})$
+	\item $(\vb{v}, \alpha \vb{w}) \sim \alpha (\vb{v}, \vb{w})$
+\end{itemize}
 
-show is member of tensor product space involving dual, leads to derivatives being done in cobasis
+Now, dyads can be defined as a special notation for the equivalence classes associated with the equivalence relation. These sets themselves are elements of $V \otimes W = (V \times W) / R$. In practice, they are not often thought of as sets containing elements.
+
+\begin{align}
+	\vb{v} \otimes \vb{w}:= [(\vb{v}, \vb{w})]_{R} = \{(\vb{u}, \vb{x}) \in V \times W: (\vb{v}, \vb{w}) - (\vb{u}, \vb{x}) \in R\}
+\end{align}
+
+With the additional definitions that $[\vb{a}]_{R} + [\vb{b}]_{R} = [\vb{a} + \vb{b}]_{R}$ and $\alpha [\vb{a}]_{R} = [\alpha \vb{a}]_{R}$, $V \otimes W$ can be proven as a vector space (Proof \ref{proof:tensor_prod_is_vec}) over the same field. Finally, the bilinearity properties follow.
+
+\begin{flalign}
+	&& (\vb{u} + \vb{v}) \otimes \vb{w} &= \vb{u} \otimes \vb{w} + \vb{v} \otimes \vb{w} & \text{Proof \ref{proof:dyad_add1}} \\
+	&& \vb{v} \otimes (\vb{w} + \vb{x}) &= \vb{v} \otimes \vb{w} + \vb{v} \otimes \vb{x} & \text{Proof \ref{proof:dyad_add2}} \\
+	&& (\alpha \vb{v}) \otimes \vb{w} &= \alpha (\vb{v} \otimes \vb{w}) & \text{Proof \ref{proof:dyad_mult1}} \\
+	&& \vb{v} \otimes (\alpha \vb{w}) &= \alpha (\vb{v} \otimes \vb{w}) & \text{Proof \ref{proof:dyad_mult2}}
+\end{flalign}
+
+For bases $\{ \vb{\hat{e}}_{i} \}_{i \in I}$ and $\{ \vb{\hat{g}}_{j} \}_{j \in J}$, $\{ \vb{\hat{e}}_{i} \otimes \vb{\hat{g}}_{j} \}_{i \in I, j \in J}$ forms a basis for $V \otimes W$ (Proof \ref{proof:tens_basis}).
+
+Like the Cartesian product, the tensor product is associative.
+
+\begin{flalign}
+	&& (V \otimes W) \otimes X &\cong V \otimes (W \otimes X)  & \text{Proof \ref{proof:tens_assoc}} \label{equation:tens_ assoc}
+\end{flalign}
+
+The dual of a tensor product space is generally injected into by the tensor product of dual spaces. If one of the spaces is finite-dimensional, this becomes an isomorphism. A tensor product space is generally injects into the dual of the tensor product of duals. If both spaces are finite dimensional, this becomes an isomorphism. The injections use the following definitions.
+
+fix this
+
+\begin{align*}
+	V^{*} \otimes W^{*} &\hookrightarrow (V \otimes W)^{*} \\
+	V^{*} \otimes W &\hookrightarrow (V \otimes W^{*})^{*} \\
+	V \otimes W^{*} &\hookrightarrow (V^{*} \otimes W)^{*} \\
+	V \otimes W &\hookrightarrow (V^{*} \otimes W^{*})^{*}
+\end{align*}
+
+\begin{align}
+	(f \otimes g) (\vb{v} \otimes \vb{w}) = \langle f, \vb{v} \rangle_{V^{*}, V} \langle g, \vb{w} \rangle_{W^{*}, W} \\
+	(\vb{v} \otimes \vb{w}) (f \otimes g) = \langle \vb{v}, f \rangle_{V, V^{*}} \langle \vb{w}, g \rangle_{W, W^{*}}
+\end{align}
+
+A tensor product of Hilbert spaces is also a Hilbert space with the following inner product definition (Proof).
+
+\begin{equation*}
+	(\vb{v} \otimes \vb{w}, \vb{u} \otimes \vb{x})_{H_{1} \otimes H_{2}} = (\vb{v}, \vb{u})_{H_{1}} (\vb{w}, \vb{x})_{H_{2}}
+\end{equation*}
+
+\section{Tensors as Linear and Bilinear Maps}
+
+Tensor products can be made isomorphic to linear maps by carefully defining their actions. Often, the nuance is glazed over. For example, textbooks often introduce dyads as a mysterious bilinear object with the following property.
+
+\begin{equation*}
+	(\vb{a} \otimes \vb{b}) \vb{c} = (\vb{b} \vdot \vb{c}) \vb{a}
+\end{equation*}
+
+This is technically valid for a real-valued Hilbert space. The problem is that this does not generalize well to complex and non-Hilbert spaces. However, it is possible to contrive an alternative using duals, which every vector space has. By starting more generally, the above definition eventually gets recovered as a special case.
+
+To define new actions between vector spaces and tensor products, the following conventions are used. Again, the duality pairing, not an inner product, is used. Its bilinearity is useful. The vector is one of the arguments, guaranteeing that the map linear. The second argument is a vector from the adjacent tensor product slot. This ensures consistency with the bilinearity of the tensor product.
+
+These conventions place restrictions on what actions are compatible. Actions can be defined for $V \otimes W$ on $W^{*}$ or $V$ on $V^{*} \otimes W$, but generally not $V \otimes W$ on $W$. The vector space is always paired with either its dual or predual. With this in mind, it is more concise to write definitions using a dual pair of sets $(V_{1}, V_{2})$. This means that the statement applies both when $V_{2} = V_{1}^{*}$ and $V_{1} = V_{2}^{*}$.
+
+\begin{definition}[Action of a Tensor Product]
+	A tensor product space $V \otimes W_{1}$ acts on $W_{2}$, where $(W_{1}, W_{2})$ is a dual pair, with the following definition.
+	\begin{equation}
+		(\vb{v} \otimes \vb{w}_{1}) \vb{w}_{2} = \langle \vb{w}_{1}, \vb{w}_{2} \rangle_{W_{1}, W_{2}} \vb{v} \label{equation:tens_action_on_space}
+	\end{equation}
+\end{definition}
+
+This definition is consistent with the bilinearity of the tensor product (Proof \ref{proof:space_otimes_space_on_space_bilinearity}). In the finite-dimensional case, this defines isomorphisms for $V \otimes W \cong L(W^{*}, V)$ (Proof) and $V \otimes W^{*} \cong L(W, V)$ (Proof).
+
+Now it is more clear how to properly set up tensor actions for complex Hilbert spaces. For example, $H_{1} \otimes H_{2}$ does not have a well-defined action on $H_{2}$, but $H_{1} \otimes H_{2}'$ does. It is true that $H_{2}' \cong H_{2}$ through the Riesz map, $\vb{w} \mapsto \vb{w}^{*}$. The catch is that the isomorphism is antilinear, $(\alpha \vb{w})^{*} = \overline{\alpha} \vb{w}^{*}$.
+
+\begin{flalign*}
+	&& (\vb{v} \otimes \vb{w}) \vb{x}^{*} &= (\vb{w}, \vb{x})_{H_{2}} \vb{v} & \text{Proof \ref{proof:space_tens_space_hilbert_action}} \\
+	&& (\vb{v} \otimes \vb{w}^{*}) \vb{x} &= (\vb{x}, \vb{w})_{H_{2}} \vb{v} & \text{Proof \ref{proof:space_tens_dual_hilbert_action}}
+\end{flalign*}
+
+Notice that, although the results are antilinear the second inner product slot, the Riesz map is an accounting fix that ensures both the bilinearity of the tensor product, and the linearity of the action.
+
+Carefully choosing the appropriate action for each case, the algebraic and Hermitian adjoints are identified as follows.
+
+\begin{flalign}
+	&& (\vb{v} \otimes \vb{w})^{*} &= \vb{w} \otimes \vb{v} & \text{Proof \ref{proof:tens_adjoint}} \label{equation:tens_adjoint} \\
+	&& (\vb{v} \otimes \vb{w})^{\dagger} &= \vb{w} \otimes \vb{v} & \text{Proof \ref{proof:space_tens_space_hermitian}} \label{equation:space_tens_space_hermitian} \\
+	&& (\vb{v} \otimes \vb{w}^{*})^{\dagger} &= \vb{w} \otimes \vb{v}^{*} & \text{Proof \ref{proof:space_tens_dual_hermitian}} \label{equation:space_tens_dual_hermitian} \\
+	&& (\vb{v}^{*} \otimes \vb{w})^{\dagger} &= \vb{w}^{*} \otimes \vb{v} & \text{Proof \ref{proof:dual_tens_space_hermitian}} \label{equation:dual_tens_space_hermitian} \\
+	&& (\vb{v}^{*} \otimes \vb{w}^{*})^{\dagger} &= \vb{w}^{*} \otimes \vb{v}^{*} & \text{Proof \ref{proof:dual_tens_dual_hermitian}} \label{equation:dual_tens_dual_hermitian}
+\end{flalign}
+
+Meanwhile, tensor products correspond to bilinear maps with the following construction.
+
+\begin{equation}
+	(\vb{v}_{1} \otimes \vb{w}_{1}) (\vb{v}_{2}, \vb{w}_{2}) = \langle \vb{v}_{1}, \vb{v}_{2} \rangle_{V_{1}, V_{2}} \langle \vb{w}_{1}, \vb{w}_{2} \rangle_{W_{1}, W_{2}}
+\end{equation}
+
+In the finite-dimensional case, this defines an isomorphism $V_{1} \otimes W_{1} \cong L(V_{2}, W_{2})$ (Proof).
+
+\section{Additional Tensor Actions}
+
+Now, similar actions can be constructed from the left upon a tensor product, for duals and preduals. One option is to provide a direct definition. However, here we start with a consistency constraint, ensuring linearity and a sort of associativity, and deduce the appropriate definition.
+
+\begin{definition}[Action on a Tensor Product]
+	A space $V_{2}$ acts from the left on a tensor product $V_{1} otimes W_{1}$, where $(V_{1}, V_{2})$ and $(W_{1}, W_{2)}$ are dual pairs, with the following constraint.
+	\begin{equation}
+		\forall \vb{w}_{2} \in W_{2}: (\vb{v}_{2} \cdot (\vb{v}_{1} \otimes \vb{w}_{1})) (\vb{w}_{2}) = \langle \vb{v}_{2}, (\vb{v}_{1} \otimes \vb{w}_{1}) \vb{w}_{2} \rangle_{V_{2}, V_{1}} \label{equation:space_action_on_tens_consistency}
+	\end{equation}
+\end{definition}
+
+The following definition results.
+
+\begin{flalign}
+	&& \vb{v}_{2} \cdot (\vb{v}_{1} \otimes \vb{w}_{1}) &= \langle \vb{v}_{2}, \vb{v}_{1} \rangle_{V_{2}, V_{1}} \vb{w}_{1} & \text{Proof \ref{proof:dual_on_space_otimes_space}} \label{equation:space_action_on_tens}
+\end{flalign}
+
+This resultant action is consistent with the bilinearity of the tensor product (Proof \ref{proof:space_on_space_otimes_space_bilinearity}). In the finite-dimensional case, this defines isomorphisms for $V \otimes W \cong L(V^{*}, W)$ (Proof) and $V^{*} \otimes W^{*} \cong L(V, W)$ (Proof).
+
+Another nice consequence of this construction is that left and right actions of the tensor product are associative (Proof). It also is consistent with the isomorphism to bilinear maps.
+
+\begin{flalign}
+	&& \vb{v}_{2} \cdot (\vb{v}_{1} \otimes \vb{w}_{1}) \vb{w}_{2} &= (\vb{v}_{1} \otimes \vb{w}_{1}) (\vb{v}_{2}, \vb{w}_{2}) & \text{Proof \ref{proof:left_right_action_bilinear}} \label{equation:left_right_action_bilinear}
+\end{flalign}
+
+If a tensor product space is also a vector space, how might a tensor product be acted on? The answer comes from recognizing the dual injections mentioned earlier. The general rule, for dual pairs $(V_{1}, V_{2})$ and $(W_{1}, W_{2)}$, is that $V_{1} \otimes W_{1} \hookrightarrow (V_{2} \otimes W_{2})^{*}$ with the following pairing.
+
+\begin{equation}
+\langle \vb{v}_{1} \otimes \vb{w}_{1}, \vb{v}_{2} \otimes \vb{w}_{2} \rangle_{(V_{2} \otimes W_{2})^{*}, V_{2} \otimes W_{2}} = \langle \vb{v}_{1}, \vb{v}_{2} \rangle_{V_{1}, V_{2}} \langle\vb{w}_{1}, \vb{w}_{2} \rangle_{W_{1}, W_{2}}
+\end{equation}
+
+Thus the following rules for actions on dual pairs $(V_{i,1}, V_{i, 2})$ and $(W_{i,1}, W_{i, 2})$ follow.
+
+\begin{align}
+(\vb{v} \otimes \vb{w}_{1,1} \otimes \dots \otimes \vb{w}_{n,1}) (\vb{w}_{1,1} \otimes \dots \otimes \vb{w}_{n,1}) &= \langle \vb{w}_{1,1}, \vb{w}_{1,2} \rangle_{W_{1,1}, W_{1, 2}} \dots \langle \vb{w}_{n,1}, \vb{w}_{n,2} \rangle_{W_{n,1}, W_{n, 2}} \vb{v} \\
+(\vb{v}_{1,1} \otimes \dots \otimes \vb{v}_{n,1}) \cdot (\vb{v}_{1,2} \otimes \dots \otimes \vb{v}_{n,2} \otimes \vb{w}) &= \vb{v}_{1,1}, \vb{v}_{1,2} \rangle_{V_{1,1}, V_{1, 2}} \dots \langle \vb{v}_{n,1}, \vb{v}_{n,2} \rangle_{V_{n,1}, V_{n, 2}} \vb{w}
+\end{align}
+
+\section{Tensor Contractions}
+
+At this point, you may start to notice a pattern for tensor product actions. Neighboring chunks with compatible dual pairs are identified and evaluated. The resulting object is a vector or tensor of reduced dimensionality.
+
+This can be extended into a general framework for multilinear contraction. The rule is to combine the innermost vectors using duality pairings, and combine the remaning objects on the outside with a tensor product. If only the innermost pair is combined, it's called a single contraction, marked with a dot. Two is a double contraction, marked with a colon, three is a triple contraction, marked with a triple dot, and so on.
+
+\begin{align}
+	\vb{a} \otimes \vb{b} \cdot \vb{c} \otimes \vb{d} &= \langle \vb{b}, \vb{c} \rangle \vb{a} \otimes \vb{d} \\
+	\vb{a} \otimes \vb{b} \otimes \vb{c} : \vb{d} \otimes \vb{e} \otimes \vb{f} &= \langle \vb{b}, \vb{d} \rangle \langle \vb{c}, \vb{e} \\
+	\vb{a} \otimes \vb{b} \otimes \vb{c} \otimes \vb{d} \therefore \vb{e} \otimes \vb{f} \otimes \vb{g} \otimes \vb{h} &= \langle \vb{b}, \vb{e} \rangle \langle \vb{c}, \vb{f} \rangle \langle \vb{d}, \vb{g} \rangle \vb{a} \otimes \vb{h} \\
+	\vb{a} \cdot \vb{b} &= \langle \vb{a}, \vb{b} \rangle \\
+	\vb{a} \otimes \vb{b} : \vb{c} \otimes \vb{d} &= \langle \vb{a}, \vb{c} \rangle \langle \vb{b}, \vb{d} \rangle \\
+	\vb{a} \otimes \vb{b} \otimes \vb{c} \therefore \vb{d} \otimes \vb{e} \otimes \vb{f} &= \langle \vb{a}, \vb{d} \rangle \langle \vb{b}, \vb{e} \rangle \langle \vb{c}, \vb{f} \rangle \\
+\end{align}
+
+A rule of thumb to check your work is that combining tensors of rank $m$ and $n$ with a $p$ contraction results in a tensor object of rank $m + n - 2p$.
