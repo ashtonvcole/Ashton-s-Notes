@@ -3,6 +3,148 @@
 
 %&& a &= b & \text{Proof \ref{proof:}} \label{equation:}
 
+\section{Topology}
+
+euclidean space relate to RN, essentially affine space
+
+homeomorphism
+
+\section{Manifolds}
+
+explain real and finite dimension
+
+\begin{definition}[Manifold]
+	A manifold $M$ is a second-countable Hausdorff space that is locally homeomorphic to a Euclidean space.
+\end{definition}
+
+This local homeomorphism is established with what is called an atlas. This is a way of assigning coordinates. Also relates to Euclidean
+
+\begin{definition}[Chart]
+	A chart $\phi: U \leftrightarrow \phi(U) \subseteq \mathbb{R}^{n}$ is a homeomorphism from an open subset of a manifold $U \subseteq M$ to a subset of real numbers $\mathbb{R}^{n}$.
+\end{definition}
+
+\begin{definition}[Atlas]
+	An atlas is is a collection of charts whose domains cover a whole manifold.
+\end{definition}
+
+\begin{definition}[Transition Map]
+	A transition map $\phi_{b} \circ \phi_{a}^{-1}: \mathbb{R}^{n} \supseteq \phi_{a}(U_{a} \cap U_{b}) \leftrightarrow \phi_{b}(U_{a} \cap U_{b}) \subseteq \mathbb{R}^{n}$ is a continuous map between the coordinates of overlapping charts.
+\end{definition}
+
+\section{Introducing Vector Spaces on a Manifold}
+
+Bla bla bla first we start with tangent space, set of all velocities/directions, geometric intuition, now definition using derivatives since derivatives correspond to velocity.
+
+\begin{definition}[Tangent Space]
+	The tangent space $T_{p}M$ of a point on a manifold $p \in M$ is a vector space representing all of the directions one can travel at that location. It may be constructed as $T_{p}M = C_{p} / \sim$, where $C_{p}$ is the set of all continuous and differentiable curves passing through $p$, and $\sim$ is an equivalence relation determining whether two curves are tangent at $p$.
+\end{definition}
+
+Note that the manifold does not yet have a metric. Notions of continuity and differentiability rely on composing curves with an appropriate chart $\phi$. Thus the set and equivalence relation are defined like so.
+
+\begin{align*}
+	C_{p} &= \{ \gamma \in U^{(-1, 1)} : (\phi \circ \gamma) \in C^{1} ((-1, 1), \mathbb{R}^{n}) \land \gamma(0) = p \} \\
+	\gamma_{1} \sim \gamma_{2} &\iff \dv{t}(\phi \circ \gamma_{1}) (0) = \dv{t}(\phi \circ \gamma_{2}) (0)
+\end{align*}
+
+The domain of $(-1, 1)$ and fixing $p$ at 0 just ensure consistency. Since any curve on $M$ passing through $p$ can be paramaterized into this form, this captures all of the ways to travel through $p$.
+
+The quotient set then contains equivalence classes $[ \gamma ]_{\sim}$ corresponding to the unique achievable derivatives at $p$. These form a vector space isomorphic to $\mathbb{R}^{n}$ itself with the following bijection $\iota: T_{p}M \leftrightarrow \mathbb{R}^{n}$ (Proof ??).
+
+\begin{equation}
+	\iota([\gamma]_{\sim}) = \dv{t} (\phi \circ \gamma) (0)
+\end{equation}
+
+A basis is constructed for the tangent space by choosing curves which vary in only one coordinate, $\vb{e}_{i} = [\gamma_{i}]_{\sim} = \iota^{-1}(\vb{e}_{i})$. These are also identified with the derivative operator along that coordinate.
+
+\begin{equation*}
+	\dv{t} (f \circ \gamma_{i}) (0) = \pdv{x^{i}} (f \circ \phi^{-1}) (\phi(p))
+\end{equation*}
+
+something something coordinates
+
+basis field
+
+vector field that is also a vector space
+
+notation overloading
+
+derivative on manifold assumes using appropriate coordinates
+
+tangent bundle
+
+use globe as example
+
+\begin{definition}[Cotangent Space]
+	The cotangent space $T_{p}^{*} M$ is the dual of the tangent space at the same point $(T_{p} M)^{*}$.
+\end{definition}
+
+explain differential forms, exterior derivative, dual basis link here
+
+\section{Introducing Geometry to a Manifold}
+
+bla bla bla coordinate system is no good for measuring distances, e.g. lat lon
+
+\begin{definition}[Metric Tensor]
+	A metric tensor $g$ assigns a function $g(p) = g_{p}: T_{p} M \times T_{p} M \rightarrow \mathbb{R}$ to every point $p$ on a manifold with the following properties.
+	\begin{enumerate}
+		\item Bilinear
+		\item Symmetric
+		\item Non-degenerate
+	\end{enumerate}
+	This bilinear form varies continuously across the manifold.
+\end{definition}
+
+Because of the isomorphism between bilinear forms and tensors, $g_{p} \in T_{p}^{*} M \otimes T_{p}^{*} M$. It is a symmetric tensor of type $(0, 2)$. The components of the tensor using a particular basis are $g_{ij} = g(\vb{e}_{i}, \vb{e}_{j})$.
+
+The introduction of a length functional finally brings the concept of distances to a manifold. The length of a curve $\gamma$ is defined as follows.
+
+metric space
+
+inverse metric tensor??
+
+\begin{equation}
+	L[\gamma] = \int_{D(\gamma)} \sqrt{g_{\gamma(s)}\left(\dv{t} \gamma(s), \dv{t} \gamma(s)\right)} \dd{t}
+\end{equation}
+
+\begin{definition}[Metric Signature]
+	The metric signature $(v, p, r)$ of a metric tensor $g$ is the number of $v$ positive, $p$ negative, and $r$ zero eigenvalues at a point $p \in M$.
+\end{definition}
+
+The non-degeneracy requirement means that $r = 0$, and the signature is constant throughout the manifold.
+
+show pointwise vs field
+
+signature
+
+\begin{definition}[Riemannian Metric]
+	A Riemannian metric is a metric tensor that is additionally positive-definite, i.e. an inner product.
+\end{definition}
+
+\begin{definition}[Riemannian Manifold]
+A Riemannian manifold is a sufficiently smooth manifold with a Riemannian metric.
+\end{definition}
+
+The introduction of an inner product finally brings the concept of norms and angles to the manifold, based on the law of cosines.
+
+dot product here??
+
+\begin{align}
+	\norm{\vb{u}} &= \sqrt{g_{p}(\vb{u}, \vb{u})} \\
+	\cos(\theta) &= \frac{g_{p} (\vb{u}, \vb{v})}{\norm{\vb{u}} \norm{\vb{v}}}
+\end{align}
+
+\begin{definition}[Christoffel Symbols]
+	content...
+\end{definition}
+
+\begin{align*}
+	\Gamma^{i}{}_{jk} = \left\langle \vb{e}^{i*}, \pdv{\vb{e}_{j}}{x^{k}} \right\rangle
+\end{align*}
+
+\section{Checklist}
+
+topology
+
 manifolds
 
 (pseudo) riemannian
@@ -34,3 +176,7 @@ frames of reference, galilean, lorentzian transformations
 cartan 2 forms against christ awful
 
 complexification in another chapter
+
+differentials and derivatives as bases, dual pairs
+
+parallel transport
