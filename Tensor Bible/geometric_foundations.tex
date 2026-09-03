@@ -11,17 +11,25 @@ homeomorphism
 
 \section{Manifolds}
 
+starting with set of locations, and some way to measure distances and angles
+
+not establishing what these are but trusting they are enough for continuity
+
 explain real and finite dimension
 
 \begin{definition}[Manifold]
 	A manifold $M$ is a second-countable Hausdorff space that is locally homeomorphic to a Euclidean space.
 \end{definition}
 
-This local homeomorphism is established with what is called an atlas. This is a way of assigning coordinates. Also relates to Euclidean
+This local homeomorphism is established with maps to $\mathbb{R}^{n}$, called charts. This is a way of assigning local coordinate systems. A collection of charts is fittingly called an atlas, and maps out every location on the manifold to at least one set of coordinates.
+
+As the names suggest, charts and atlases may not represent the actual geometry of the manifold. Opening up a world atlas, projections like equirectangular and Mercator warp the roughly spherical surface of the geoid, making sizes inconsistent, straight lines appear curved, and curved lines appear straight. Generally, norms and inner products on $\mathbb{R}^{n}$ do not capture the geometry of a manifold. Instead, other objects will be introduced.
 
 \begin{definition}[Chart]
 	A chart $\phi: U \leftrightarrow \phi(U) \subseteq \mathbb{R}^{n}$ is a homeomorphism from an open subset of a manifold $U \subseteq M$ to a subset of real numbers $\mathbb{R}^{n}$.
 \end{definition}
+
+A chart can be split to extract individual coordinate functions $x^{i}: U \rightarrow \mathbb{R}$, with the convention $\phi(p) = (x^{1}(p), \dots, x^{n}(p))$.
 
 \begin{definition}[Atlas]
 	An atlas is is a collection of charts whose domains cover a whole manifold.
@@ -31,34 +39,102 @@ This local homeomorphism is established with what is called an atlas. This is a 
 	A transition map $\phi_{b} \circ \phi_{a}^{-1}: \mathbb{R}^{n} \supseteq \phi_{a}(U_{a} \cap U_{b}) \leftrightarrow \phi_{b}(U_{a} \cap U_{b}) \subseteq \mathbb{R}^{n}$ is a continuous map between the coordinates of overlapping charts.
 \end{definition}
 
-\section{Introducing Vector Spaces on a Manifold}
+\section{Vector Spaces on a Manifold}
 
 Bla bla bla first we start with tangent space, set of all velocities/directions, geometric intuition, now definition using derivatives since derivatives correspond to velocity.
+
+\subsection{Tangent Space}
 
 \begin{definition}[Tangent Space]
 	The tangent space $T_{p}M$ of a point on a manifold $p \in M$ is a vector space representing all of the directions one can travel at that location. It may be constructed as $T_{p}M = C_{p} / \sim$, where $C_{p}$ is the set of all continuous and differentiable curves passing through $p$, and $\sim$ is an equivalence relation determining whether two curves are tangent at $p$.
 \end{definition}
 
-Note that the manifold does not yet have a metric. Notions of continuity and differentiability rely on composing curves with an appropriate chart $\phi$. Thus the set and equivalence relation are defined like so.
+The big challenge to overcome with this definition is that $M$ is just a topological space. Continuity is possible, but the space may not even have a metric! What does it mean for curves to be differentiable? The solution is to represent the curves as functions from reals to reals, where continuity and differentiability are easy to define. They are parameterized with an input argument in $\mathbb{R}$, and mapped with a chart to $\mathbb{R}^{n}$. Because transition maps are constrained to be smooth, if these are shown for one chart $(U, \phi)$, they apply for all relevant charts in the neighborhood.
 
-\begin{align*}
-	C_{p} &= \{ \gamma \in U^{(-1, 1)} : (\phi \circ \gamma) \in C^{1} ((-1, 1), \mathbb{R}^{n}) \land \gamma(0) = p \} \\
-	\gamma_{1} \sim \gamma_{2} &\iff \dv{t}(\phi \circ \gamma_{1}) (0) = \dv{t}(\phi \circ \gamma_{2}) (0)
-\end{align*}
-
-The domain of $(-1, 1)$ and fixing $p$ at 0 just ensure consistency. Since any curve on $M$ passing through $p$ can be paramaterized into this form, this captures all of the ways to travel through $p$.
-
-The quotient set then contains equivalence classes $[ \gamma ]_{\sim}$ corresponding to the unique achievable derivatives at $p$. These form a vector space isomorphic to $\mathbb{R}^{n}$ itself with the following bijection $\iota: T_{p}M \leftrightarrow \mathbb{R}^{n}$ (Proof ??).
+Continuous and differentiable curves are ones which are continuous and differentiable when composed with any chart. The domain of $(-1, 1)$ and fixing $p$ at 0 are just parameterization conventions for simplicity.
 
 \begin{equation}
-	\iota([\gamma]_{\sim}) = \dv{t} (\phi \circ \gamma) (0)
+	C_{p} = \{ \gamma : (-1, 1) \rightarrow U : \gamma(0) = p \land (\phi \circ \gamma) \in C^{1} ((-1, 1), \mathbb{R}^{n}) \} \\
 \end{equation}
 
-A basis is constructed for the tangent space by choosing curves which vary in only one coordinate, $\vb{e}_{i} = [\gamma_{i}]_{\sim} = \iota^{-1}(\vb{e}_{i})$. These are also identified with the derivative operator along that coordinate.
+In the same way, tangent curves are ones which are tangent through any chart.
 
-\begin{equation*}
-	\dv{t} (f \circ \gamma_{i}) (0) = \pdv{x^{i}} (f \circ \phi^{-1}) (\phi(p))
-\end{equation*}
+\begin{equation}
+	\gamma_{1} \sim \gamma_{2} \iff \dv{t}(\phi \circ \gamma_{1}) (0) = \dv{t}(\phi \circ \gamma_{2}) (0)
+\end{equation}
+
+The quotient set $C_{p} / \sim$ then contains equivalence classes $[ \gamma ]_{\sim}$ corresponding to the unique tangents at $p$. These tangents form a vector space isomorphic to $\mathbb{R}^{n}$ itself (Proof ??).
+
+A basis can be constructed for the tangent space, with respect to a particular chart $\phi$, by choosing curves $\gamma_{i}$ which vary in only one coordinate. These can be constructed backwards from appropriately restricted $c_{i}$t.
+
+\begin{align*}
+	c_{i}(t) &= (p^{1}, \dots, p^{i} + t, \dots, p^{n}) : \mathbb{R} \rightarrow \mathbb{R}^{n} \\
+	\gamma_{i} &= \phi^{-1} \circ c_{i} \\
+	\vb{e}_{i}& = [\gamma_{i}]_{\sim}
+\end{align*}
+
+Intuitively, these vectors point along the coordinate lines intersecting at $p$.
+
+\begin{definition}[Action of a Vector on a Function]
+	Any vector $\vb{v} = [\gamma]_{\sim} \in T_{p} M$ in the tangent space at $p$ may act on a function $f: U \rightarrow \mathbb{R}$, defined in an open neighborhood $U \subseteq M$ with the following definition.
+	\begin{equation}
+		\vb{v}(f) = \dv{t} (f \circ \gamma)(0)
+	\end{equation}
+\end{definition}
+
+This is a consistent definition because every vector corresponds to a unique equivalence class of curves, which all have the same derivative at $p$. This suggests a correspondence to directional derivatives, and indeed the basis vectors can be identified with derivative operators.
+
+\begin{align*}
+	\vb{e}_{i}(f) &= \dv{t} (f \circ \gamma_{i})(0) \\
+	&= \dv{t} (f \circ \phi^{-1} \circ c_{i})(0) \\
+	&= \sum_{j = 1}^{n} \pdv{x^{j}} (f \circ \phi^{-1}) (c_{i}(0)) \cdot [c_{i}'(0)]_{j} \\
+	&= \pdv{x^{i}} (f \circ \phi^{-1}) (p^{1}, \dots, p^{n})
+\end{align*}
+
+Using looser notation, $\vb{e}_{i}(f) = \pdv{f}{x^{i}}$ at $p$. Note that $[c_{i}'(0)]_{j}$ refers to the $j$th component of $c_{i}'$ at $t = 0$, which is 0 if $j \neq i$ and 1 if $j = i$.
+
+\subsection{Cotangent Space}
+
+\begin{definition}
+	aaa
+\end{definition}
+
+\section{Vector Fields on a Manifold}
+
+For any curve in the equivalence class, 
+
+Now that a vector space is defined at every point on the manifold, often we want to assign a particular vector at every location. For example, everywhere on the globe, the wind blows in a particular direction. This is called a vector field.
+
+\begin{definition}[Tangent Bundle]
+	The tangent bundle $TM$ of a manifold $M$ is the disjoint union of every tangent space on the manifold.
+	\begin{equation}
+		TM = \bigsqcup_{p \in M} T_{p} M = \bigcup \{ (p, \vb{v}) : p \in M, \vb{v} \in T_{p} M \}
+	\end{equation}
+\end{definition}
+
+A disjoint union merges sets while distinguising which set each element originated from. bla bla bla reason
+
+\begin{definition}[Vector Field]
+	A vector field $\mathbf{u} : M \hookrightarrow TM$ maps every location $p$ on a manifold $M$ to a vector in that location's tangent space $T_{p} M$.
+\end{definition}
+
+By convention, the location in the ordered pair is redundant and ignored, so $\mathbf{u}(p) = (p, \mathbf{u}_{p})$ is understood to refer just to $\mathbf{u}_{p}$.
+
+\begin{definition}[Differential]
+	content...
+\end{definition}
+
+\begin{definition}[Cotangent Space]
+	content...
+\end{definition}
+
+\begin{definition}[Cotangent Bundle]
+	content...
+\end{definition}
+
+vector fields as vector space w scalar at every location
+
+vector spaces are over what field
 
 something something coordinates
 
